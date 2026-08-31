@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <header>
-        <a href=""><img src=""></a><!-- LOGO -->
+<header>
+    <div class="header-bar">
+        <a href="index.php"><img src="../uploads/logo.png"></a><!-- LOGO -->
         <!-- BARRA DE PESQUISA -->
-        <a href=""><img src=""></a><!-- CARRINHO -->
-        <a href=""><img src=""></a><!-- LOGIN -->
-        <nav>
-            <a href="">Categorias</a>
-            <div>
-                <a href="">Mais Vendidos</a>
-                <a href="">Autores</a>
-                <a href="">Promoções</a>
-                <a href="">E-book</a>
-            </div>
-        </nav>
-    </header>
-
-</body>
-</html>
+        <a href="#"><img src="../uploads/carrinho.png"></a><!-- CARRINHO -->
+        <a href="login.php"><img src="../uploads/login.png"></a><!-- LOGIN -->
+    </div>
+    <nav>
+        <i class="fa-solid fa-bars"><a href="#">Categorias</a></i>
+        <div class="nav-bar">
+            <a href="#">Mais Vendidos</a>
+            <a href="#">Autores</a>
+            <a href="#">Promoções</a>
+            <a href="#">E-book</a>
+        </div>
+    </nav>
+</header>
