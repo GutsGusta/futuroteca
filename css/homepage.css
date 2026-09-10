@@ -1,0 +1,192 @@
+.container{
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+    ;
+}
+
+.secao{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.secao-titulo{
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    margin-bottom:12px;
+}
+
+.categoria-lista{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.categoria-botao{
+    width: 100px;
+    height: 100px;
+    border: none;
+    border-radius: 16px;
+    background-color: #ececf0;
+    color: #333333;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Space Grotesk', Sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.categoria-botao:hover{
+    background-color: #dabfff;
+}
+
+.categoria-botao:active{
+    background-color: #c09bf8;
+    color: #ffffff;
+}
+
+.container-banners {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.banner-seta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: rgba(0, 0, 0, 0);
+    color: #636363;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.banner-seta:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #dabfff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
+}
+
+.banner-anterior {
+    left: 20px;
+}
+
+.banner-proximo {
+    right: 20px;
+}
+
+.banner-imagens{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+
+.banner-ativo {
+    width: 100%;
+}
+
+.banner-inativo {
+    width: 0;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #636363;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-ativo{
+    background-color: #dabfff;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    gap: 20px;
+}
+
+.secao-titulo {
+    font-family: 'Exo 2', Sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 12px;
+}
+
+.mais-vendidos-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.mais-vendidos-item {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 290px;
+    border: none;
+    border-radius: 16px;
+    background-color: #ececf0;
+    font-family: 'Space Grotesk', Sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mais-vendidos-item img {
+    width: 150px;
+    height: 190px;
+    object-fit: cover;
+}
+
+.mais-vendidos {
+    margin-bottom: 200px;
+}
+
+.mais-vendidos-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.mais-vendidos-titulo {
+    color: #333333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mais-vendidos-autor{
+    color: #333333;
+    font-size: 16px;
+    font-weight: 400;
+}

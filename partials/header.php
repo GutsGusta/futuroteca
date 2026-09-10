@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="../css/reset.css">
+</head>
 <header>
     <div class="header-bar">
         <a href="index.php"><img src="../uploads/logo.png"></a><!-- LOGO -->
