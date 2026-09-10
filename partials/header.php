@@ -1,9 +1,9 @@
 <header>
     <div class="header-bar">
-        <a href="index.php"><img src="../uploads/logo.png"></a><!-- LOGO -->
+        <a href="index.php"><img src="uploads/logo.png"></a><!-- LOGO -->
         <!-- BARRA DE PESQUISA -->
-        <a href="#"><img src="../uploads/carrinho.png"></a><!-- CARRINHO -->
-        <a href="login.php"><img src="../uploads/login.png"></a><!-- LOGIN -->
+        <a href="#"><img src="uploads/carrinho.png"></a><!-- CARRINHO -->
+        <a href="login.php"><img src="uploads/login.png"></a><!-- LOGIN -->
     </div>
     <nav>
         <i class="fa-solid fa-bars"><a href="#">Categorias</a></i>
