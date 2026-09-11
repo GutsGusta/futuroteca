@@ -57,6 +57,27 @@
     margin-bottom: 20px;
 }
 
+.mais-vendidos-seta{
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    color: #636363;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mais-vendidos-seta:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #dabfff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
+}
+
 .banner-seta {
     position: absolute;
     top: 50%;
@@ -139,10 +160,12 @@ main {
 }
 
 .mais-vendidos-lista {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 200px);
     gap: 20px;
     justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .mais-vendidos-item {
@@ -159,6 +182,11 @@ main {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.mais-vendidos-item:hover {
+    background-color: #dabfff;
 }
 
 .mais-vendidos-item img {
@@ -168,7 +196,10 @@ main {
 }
 
 .mais-vendidos {
-    margin-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    gap: 20px;
 }
 
 .mais-vendidos-info {
@@ -189,4 +220,11 @@ main {
     color: #333333;
     font-size: 16px;
     font-weight: 400;
+}
+
+.mais-vendidos-passador{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
