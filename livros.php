@@ -26,9 +26,16 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 $categorias = [
-    'Ficção', 'Romance', 'Fantasia', 'Aventura', 'Suspense', 
-    'Comédia', 'Infantil', 'Biografia', 'Terror', 'Programação', 
-    'Artigo Científico', 'História', 'HQ e Mangás', 'Literatura'
+    'Literatura Brasileira',
+    'Ficção Científica',
+    'Fantasia',
+    'História',
+    'Tecnologia',
+    'Filosofia',
+    'Ciência',
+    'Psicologia',
+    'Negócios e Finanças',
+    'Biografia'
 ];
 ?>
 <!DOCTYPE html>
