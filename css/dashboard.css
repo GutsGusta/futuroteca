@@ -284,8 +284,6 @@ td {
 
 }
 
-/* PÁGINA DE PRODUTOS */
-
 .cabecalho-pagina {
     display: flex;
     justify-content: space-between;
@@ -316,9 +314,6 @@ td {
     background-color: #6035bd;
 }
 
-
-/* FILTROS */
-
 .filtros-produtos {
     display: flex;
     gap: 15px;
@@ -345,9 +340,6 @@ td {
 
     outline: none;
 }
-
-
-/* TABELA */
 
 .tabela-produtos {
     background-color: white;

@@ -61,10 +61,8 @@
 
     </section>
 
-    <!-- ÚLTIMOS PEDIDOS E EMPRÉSTIMOS -->
 <section class="resumo-dashboard">
 
-    <!-- ÚLTIMOS PEDIDOS -->
     <div class="painel-dashboard">
 
         <div class="painel-titulo">
@@ -114,8 +112,6 @@
 
     </div>
 
-
-    <!-- EMPRÉSTIMOS RECENTES -->
     <div class="painel-dashboard">
 
         <div class="painel-titulo">
@@ -167,13 +163,11 @@
 
 </section>
 
-
-<!-- DEVOLUÇÕES PRÓXIMAS -->
 <section class="devolucoes">
 
     <div class="painel-titulo">
         <div>
-            <h3>⚠️ Devoluções Próximas</h3>
+            <h3> Devoluções Próximas</h3>
             <p>Livros com prazo de devolução próximo.</p>
         </div>
 
