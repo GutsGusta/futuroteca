@@ -1,0 +1,327 @@
+main {
+
+    display: grid;
+
+    grid-template-columns: 3fr 2fr;
+
+    gap: 30px;
+
+    width: 70%;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    box-sizing: border-box;
+
+    align-items: center;
+
+}
+
+
+/* SEÇÕES */
+
+.resumo-pedido,
+
+.informacoes-pedido {
+
+    background-color: #f5f3f5;
+
+    padding: 20px 30px;
+
+    box-sizing: border-box;
+
+    border-radius: 20px;
+
+}
+
+
+/* TÍTULOS */
+
+.titulo-secao {
+
+    margin-bottom: 20px;
+
+}
+
+.titulo-secao h1 {
+
+    font-size: 1.1rem;
+
+    color: #333;
+
+}
+
+
+.lista-pedido-itens {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+.pedido-item {
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    background-color: #fff;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    border-radius: 20px;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+    text-decoration: none;
+
+    color: inherit;
+
+}
+
+
+/* IMAGEM */
+
+.pedido-item img {
+
+    width: 110px;
+
+    height: 150px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    margin-right: 20px;
+
+}
+
+
+/* INFORMAÇÕES */
+
+.item-informacoes {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    flex: 1;
+
+}
+
+
+.item-informacoes h2 {
+
+    font-size: 1.1rem;
+
+    color: #333;
+
+    margin: 0 0 5px 0;
+
+}
+
+
+.item-informacoes p {
+
+    font-size: 0.9rem;
+
+    color: #666;
+
+    margin: 2px 0;
+
+}
+
+
+.item-informacoes h3 {
+
+    font-size: 0.9rem;
+
+    color: #666;
+
+    margin: 5px 0 0 0;
+
+    font-weight: bold;
+
+}
+
+
+/* AÇÕES */
+
+.item-acoes {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    margin-left: 15px;
+
+}
+
+
+.item-acoes h4 {
+
+    font-size: 0.8rem;
+
+    color: #666;
+
+    margin: 0;
+
+}
+
+
+.item-acoes button {
+
+    border: none;
+
+    background-color: transparent;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    color: #666;
+
+}
+
+
+/* INFORMAÇÕES DO TOTAL */
+
+.lista-informacoes-itens {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+.informacao-item {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background-color: #fff;
+
+    padding: 12px 15px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+}
+
+
+.informacao-item h3 {
+
+    font-size: 0.9rem;
+
+    color: #333;
+
+}
+
+
+.informacao-item h4 {
+
+    font-size: 0.9rem;
+
+    color: #666;
+
+}
+
+
+/* TOTAL */
+
+.total-pagar {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    background-color: #fff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+}
+
+
+.titulo-total-pagar {
+
+    font-size: 1.1rem;
+
+    color: #333;
+
+    margin-bottom: 8px;
+
+}
+
+
+.total-pagar span {
+
+    font-size: 0.9rem;
+
+    color: #666;
+
+    font-weight: bold;
+
+}
+
+
+/* BOTÃO */
+
+.informacoes-pedido>button {
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background-color: #4b4b73;
+
+    color: #fff;
+
+    font-size: 0.9rem;
+
+    cursor: pointer;
+
+}

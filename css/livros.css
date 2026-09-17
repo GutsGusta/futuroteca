@@ -14,66 +14,86 @@ main {
 
 /* BARRA LATERAL */
 
-.sidebar {
-      width: 220px;
-      background-color: #4b4b73; 
-      color: #ffffff;
-      padding: 20px 15px;
-      min-height: 100vh;
-    }
+.barra-lateral {
+  width: 220px;
+  background-color: #4b4b73; 
+  color: #ffffff;
+  padding: 20px 15px;
+  align-self: stretch;
+}
 
+.livros-generos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
    
-    .category-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+.livros-indv label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.2s ease;
+}
 
-   
-    .category-item label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: opacity 0.2s ease;
-    }
-
-    .category-item label:hover {
-      opacity: 0.8;
-    }
-
-   
-    .category-item input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-      accent-color: #e53935; 
-    }
+.livros-indv label:hover {
+  opacity: 0.8;
+}
+ 
+.livros-indv input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #e53935; 
+}
 
 /* PRODUTOS */
 
+.card-link{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .card-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: min-content;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .card {
     background-color: #fff;
     display: flex;
-    align-items: center;
-    justify-content: start;
     flex-direction: column;
-    width: 250px;
-    height: auto;
+    align-items: center;
+    justify-content: space-between;
     padding: 20px;
     border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: center;
 }
 
 .card img {
     height: 200px;
     width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 4px 0;
 }
