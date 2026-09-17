@@ -13,47 +13,47 @@
     ?>
     <main>
         <aside class="barra-lateral">
-            <ul class="">
-                <li class="">
+            <ul class="livros-generos">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Ficção</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Romance</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Fantasia</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Aventura</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Suspense</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Comédia</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Infantil</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria" checked> Biografia</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Terror</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Programação</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Artigo Científico</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> História</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> HQ e Mangás</label>
                 </li>
-                <li class="">
+                <li class="livros-indv">
                     <label><input type="checkbox" name="categoria"> Literatura</label>
                 </li>
             </ul>
