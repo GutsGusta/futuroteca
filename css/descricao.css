@@ -1,0 +1,16 @@
+body{
+    margin-left: 200px;
+    margin-left:20px;
+}
+.img-livro{
+    width: 220px;
+    height: auto;
+    margin-left:378px;
+}
+.titulo{
+    font-size: 48px;
+    margin-left:625px;
+}
+.desc-livro{
+    display: flex;
+}
