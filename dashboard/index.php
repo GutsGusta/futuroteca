@@ -24,7 +24,7 @@
     <section class="cards-dashboard">
 
         <div class="card">
-            <div class="card-icone">📚</div>
+            <div class="card-icone"></div>
 
             <div>
                 <h2>128</h2>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="card">
-            <div class="card-icone">🛒</div>
+            <div class="card-icone"></div>
 
             <div>
                 <h2>12</h2>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="card">
-            <div class="card-icone">🕐</div>
+            <div class="card-icone"></div>
 
             <div>
                 <h2>18</h2>
@@ -51,7 +51,7 @@
         </div>
 
         <div class="card">
-            <div class="card-icone">👥</div>
+            <div class="card-icone"></div>
 
             <div>
                 <h2>46</h2>
