@@ -21,9 +21,9 @@
                 <p>Gerencie os livros, artigos e e-books da Futuroteca.</p>
             </div>
 
-            <button href="cadastrar-produto.php" class="btn-novo-produto">
+            <a href="cadastrar-produto.php" class="btn-novo-produto">
                 + Novo Produto
-            </button>
+            </a>
         </div>
 
 
