@@ -36,8 +36,8 @@ $categorias = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/header-footer.css">
-    <link rel="stylesheet" href="css/livros.css">
+    <link rel="stylesheet" href="./css/header-footer.css">
+    <link rel="stylesheet" href="./css/livros.css">
     <title>Livros</title>
 </head>
 <body>
@@ -69,6 +69,7 @@ $categorias = [
     <div class="card-container">
         <?php if (!empty($produtos)): ?>
             <?php foreach ($produtos as $produto): ?>
+                <a href="compra.php?id=<?= $produto['id_produto'] ?>" class="card-link">
                 <article class="card">
                     <img src="<?= htmlspecialchars($produto['imagem'] ?: 'uploads/verity.png') ?>" alt="<?= htmlspecialchars($produto['titulo']) ?>">
                     <h3><?= htmlspecialchars($produto['titulo']) ?></h3>
