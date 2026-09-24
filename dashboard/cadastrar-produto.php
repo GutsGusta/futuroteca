@@ -1,3 +1,42 @@
+<?php
+
+require_once '../crud.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $nomeImagem = null;
+
+    if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] == 0) {
+
+        $nomeImagem = time() . "_" . basename($_FILES["imagem"]["name"]);
+
+        $destino = "../uploads/" . $nomeImagem;
+
+        move_uploaded_file(
+            $_FILES["imagem"]["tmp_name"],
+            $destino
+        );
+    }
+
+    $dados = [
+        "titulo" => $_POST["titulo"],
+        "autor" => $_POST["autor"],
+        "categoria" => $_POST["categoria"],
+        "tipo" => $_POST["tipo"],
+        "preco" => $_POST["preco"],
+        "estoque" => $_POST["estoque"],
+        "descricao" => $_POST["descricao"],
+        "imagem" => $nomeImagem
+    ];
+
+    create($pdo, "produto", $dados);
+
+    header("Location: produtos.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -28,32 +67,19 @@
         </div>
 
 
-        <form class="form-produto">
+        <form class="form-produto" method="POST" enctype="multipart/form-data">
 
             <div class="campo">
                 <label for="titulo">Título</label>
 
-                <input
-                    type="text"
-                    id="titulo"
-                    name="titulo"
-                    placeholder="Digite o título"
-                    required
-                >
+                <input type="text" id="titulo" name="titulo" placeholder="Digite o título" required>
             </div>
-
 
             <div class="campo">
                 <label for="autor">Autor</label>
 
-                <input
-                    type="text"
-                    id="autor"
-                    name="autor"
-                    placeholder="Digite o autor"
-                >
+                <input type="text" id="autor" name="autor" placeholder="Digite o autor">
             </div>
-
 
             <div class="linha-form">
 
@@ -89,29 +115,14 @@
                 <div class="campo">
                     <label for="preco">Preço</label>
 
-                    <input
-                        type="number"
-                        id="preco"
-                        name="preco"
-                        step="0.01"
-                        min="0"
-                        placeholder="0,00"
-                        required
-                    >
+                    <input type="number" id="preco" name="preco" step="0.01" min="0" placeholder="0,00" required>
                 </div>
 
 
                 <div class="campo">
                     <label for="estoque">Estoque</label>
 
-                    <input
-                        type="number"
-                        id="estoque"
-                        name="estoque"
-                        min="0"
-                        value="0"
-                        required
-                    >
+                    <input type="number" id="estoque" name="estoque" min="0" value="0" required>
                 </div>
 
             </div>
@@ -120,24 +131,14 @@
             <div class="campo">
                 <label for="descricao">Descrição</label>
 
-                <textarea
-                    id="descricao"
-                    name="descricao"
-                    rows="5"
-                    placeholder="Descrição do produto"
-                ></textarea>
+                <textarea id="descricao" name="descricao" rows="5" placeholder="Descrição do produto"></textarea>
             </div>
 
 
             <div class="campo">
                 <label for="imagem">Imagem</label>
 
-                <input
-                    type="file"
-                    id="imagem"
-                    name="imagem"
-                    accept="image/*"
-                >
+                <input type="file" id="imagem" name="imagem" accept="image/*">
             </div>
 
 

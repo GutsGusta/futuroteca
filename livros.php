@@ -69,15 +69,35 @@ $categorias = [
     <div class="card-container">
         <?php if (!empty($produtos)): ?>
             <?php foreach ($produtos as $produto): ?>
-                <a href="compra.php?id=<?= $produto['id_produto'] ?>" class="card-link">
-                <article class="card">
-                    <img src="<?= htmlspecialchars($produto['imagem'] ?: 'uploads/verity.png') ?>" alt="<?= htmlspecialchars($produto['titulo']) ?>">
-                    <h3><?= htmlspecialchars($produto['titulo']) ?></h3>
-                    <p><?= htmlspecialchars($produto['autor']) ?></p>
-                    <p><?= htmlspecialchars($produto['categoria']) ?></p>
-                    <p><b>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></b></p>
-                </article>
-            <?php endforeach; ?>
+
+        <a href="compra.php?id=<?= $produto['id_produto'] ?>" class="card-link">
+
+            <article class="card">
+
+                <img 
+                    src="<?= !empty($produto['imagem']) 
+                        ? 'uploads/' . htmlspecialchars($produto['imagem']) 
+                        : 'uploads/verity.png' ?>"
+                    alt="<?= htmlspecialchars($produto['titulo']) ?>"
+                >
+
+                <h3><?= htmlspecialchars($produto['titulo']) ?></h3>
+
+                <p><?= htmlspecialchars($produto['autor']) ?></p>
+
+                <p><?= htmlspecialchars($produto['categoria']) ?></p>
+
+                <p>
+                    <b>
+                        R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
+                    </b>
+                </p>
+
+            </article>
+
+        </a>
+
+        <?php endforeach; ?>
         <?php else: ?>
             <p>Nenhum livro encontrado para as categorias selecionadas.</p>
         <?php endif; ?>
