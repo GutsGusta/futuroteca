@@ -24,7 +24,7 @@
                 <p>Senha</p>
                 <input type="password" required>
             </label>
-            <a href="">Não possui conta? Cadastra-se aqui!</a>
+            <a href="cadastro.php">Não possui conta? Cadastra-se aqui!</a>
             <button type="submit">Login</button>
         </form>
     </main>
