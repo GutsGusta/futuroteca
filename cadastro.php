@@ -40,7 +40,7 @@
                     <p>Senha</p>
                     <input type="password">
                 </label>
-                <a href="">Já tem uma conta? Faça login</a>
+                <a href="login.php">Já tem uma conta? Faça login</a>
                 <button type="submit">Cadastrar</button>
             </form>
         </div>
