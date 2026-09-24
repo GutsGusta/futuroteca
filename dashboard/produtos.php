@@ -1,3 +1,11 @@
+<?php
+
+require_once '../crud.php';
+
+$produtos = readAll($pdo, "produto");
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -29,10 +37,7 @@
 
         <div class="filtros-produtos">
 
-            <input
-                type="text"
-                placeholder="Buscar por título ou autor..."
-            >
+            <input type="text" placeholder="Buscar por título ou autor...">
 
             <select>
                 <option value="">Todas as categorias</option>
@@ -70,43 +75,46 @@
 
                 <tbody>
 
-                    <tr>
-                        <td>Dom Casmurro</td>
-                        <td>Machado de Assis</td>
-                        <td>Romance</td>
-                        <td>Livro</td>
-                        <td>R$ 39,90</td>
-                        <td>12</td>
+                    <?php foreach ($produtos as $produto): ?>
 
-                        <td>
-                            <button class="btn-editar">
-                                Editar
-                            </button>
+                        <tr>
+                            <td>
+                                <?= htmlspecialchars($produto["titulo"]) ?>
+                            </td>
 
-                            <button class="btn-excluir">
-                                Excluir
-                            </button>
-                        </td>
-                    </tr>
+                            <td>
+                                <?= htmlspecialchars($produto["autor"]) ?>
+                            </td>
 
-                    <tr>
-                        <td>1984</td>
-                        <td>George Orwell</td>
-                        <td>Ficção</td>
-                        <td>Livro</td>
-                        <td>R$ 49,90</td>
-                        <td>8</td>
+                            <td>
+                                <?= htmlspecialchars($produto["categoria"]) ?>
+                            </td>
 
-                        <td>
-                            <button class="btn-editar">
-                                Editar
-                            </button>
+                            <td>
+                                <?= htmlspecialchars($produto["tipo"]) ?>
+                            </td>
 
-                            <button class="btn-excluir">
-                                Excluir
-                            </button>
-                        </td>
-                    </tr>
+                            <td>
+                                R$ <?= number_format($produto["preco"], 2, ",", ".") ?>
+                            </td>
+
+                            <td>
+                                <?= $produto["estoque"] ?>
+                            </td>
+
+                            <td>
+                                <a href="editar-produto.php?id=<?= $produto['id_produto'] ?>" class="btn-editar">
+                                    Editar
+                                </a>
+
+                                <a href="excluir-produto.php?id=<?= $produto['id_produto'] ?>" class="btn-excluir"
+                                    onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    Excluir
+                                </a>
+                            </td>
+                        </tr>
+
+                    <?php endforeach; ?>
 
                 </tbody>
 
