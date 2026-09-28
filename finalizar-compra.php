@@ -208,6 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/compra.css">
+    <link rel="stylesheet" href="css/finalizar-compra.css">
 </head>
 
 <body>
@@ -216,45 +217,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main class="detalhes-container">
 
-        <div class="detalhes-info">
+        <div class="finalizar-container">
 
             <h1>Finalizar compra</h1>
 
-            <p>
-                Total dos produtos:
-                <strong>
-                    R$ <?= number_format($total, 2, ",", ".") ?>
-                </strong>
-            </p>
+            <div class="resumo-compra">
 
-            <?php if ($total >= 120): ?>
+                <div class="resumo-linha">
+                    <span>Total dos produtos</span>
 
-                <p>🎉 Sua compra possui frete grátis!</p>
+                    <strong>
+                        R$ <?= number_format($total, 2, ',', '.') ?>
+                    </strong>
+                </div>
 
-            <?php endif; ?>
+                <?php if ($total >= 120): ?>
 
-            <form method="POST">
+                    <div class="frete-gratis">
+                        🎉 Sua compra possui frete grátis!
+                    </div>
 
-                <label for="tipo_entrega">
-                    Forma de entrega:
-                </label>
+                <?php endif; ?>
 
-                <select name="tipo_entrega" id="tipo_entrega" required>
+            </div>
 
-                    <option value="RETIRADA">
-                        Retirada
-                    </option>
+            <form method="POST" class="form-finalizar">
 
-                    <option value="ENTREGA">
-                        Entrega
-                    </option>
+                <div class="campo-entrega">
 
-                </select>
+                    <label for="tipo_entrega">
+                        Forma de entrega
+                    </label>
 
-                <br><br>
+                    <select name="tipo_entrega" id="tipo_entrega" required>
+                        <option value="RETIRADA">
+                            Retirada
+                        </option>
 
-                <button type="submit">
-                    Confirmar
+                        <option value="ENTREGA">
+                            Entrega em casa
+                        </option>
+                    </select>
+
+                </div>
+
+                <button type="submit" class="btn-confirmar">
+                    Confirmar compra
                 </button>
 
             </form>

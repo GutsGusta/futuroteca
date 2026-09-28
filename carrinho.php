@@ -170,6 +170,7 @@ foreach ($itens as $item) {
 
     <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/compra.css">
+    <link rel="stylesheet" href="css/carrinho.css">
 
 </head>
 
@@ -179,101 +180,104 @@ foreach ($itens as $item) {
 
     <main class="detalhes-container">
 
-        <div class="detalhes-info">
+        <div class="carrinho-container">
 
             <h1>Meu Carrinho</h1>
 
-            <?php if (count($itens) == 0): ?>
+            <?php if (count($itens) > 0): ?>
 
-                <p>Seu carrinho está vazio.</p>
+                <div class="tabela-container">
 
-                <a href="livros.php">
-                    Ver produtos
-                </a>
+                    <table class="tabela-carrinho">
 
-            <?php else: ?>
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>Produto</th>
-                            <th>Operação</th>
-                            <th>Quantidade</th>
-                            <th>Preço</th>
-                            <th>Ações</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <?php foreach ($itens as $item): ?>
-
+                        <thead>
                             <tr>
-
-                                <td>
-                                    <?= htmlspecialchars($item["titulo"]) ?>
-                                </td>
-
-                                <td>
-                                    <?= htmlspecialchars($item["tipo_operacao"]) ?>
-                                </td>
-
-                                <td>
-                                    <?= $item["quantidade"] ?>
-                                </td>
-
-                                <td>
-
-                                    <?php if ($item["tipo_operacao"] == "COMPRA"): ?>
-
-                                        <?php
-                                        if (
-                                            !empty($item["preco_promocional"]) &&
-                                            $item["preco_promocional"] < $item["preco"]
-                                        ) {
-                                            $precoItem = $item["preco_promocional"];
-                                        } else {
-                                            $precoItem = $item["preco"];
-                                        }
-                                        ?>
-
-                                        R$ <?= number_format(
-                                            $precoItem * $item["quantidade"],
-                                            2,
-                                            ",",
-                                            "."
-                                        ) ?>
-
-                                    <?php else: ?>
-
-                                        Empréstimo
-
-                                    <?php endif; ?>
-
-                                </td>
-
+                                <th>Produto</th>
+                                <th>Operação</th>
+                                <th>Quantidade</th>
+                                <th>Preço</th>
+                                <th>Ações</th>
                             </tr>
+                        </thead>
 
-                        <?php endforeach; ?>
+                        <tbody>
 
-                    </tbody>
+                            <?php foreach ($itens as $item): ?>
 
-                </table>
+                                <?php
+                                if (
+                                    !empty($item["preco_promocional"]) &&
+                                    $item["preco_promocional"] < $item["preco"]
+                                ) {
+                                    $precoItem = $item["preco_promocional"];
+                                } else {
+                                    $precoItem = $item["preco"];
+                                }
+                                ?>
 
-                <h2>
-                    Total: R$ <?= number_format($total, 2, ",", ".") ?>
-                </h2>
+                                <tr>
 
-                <?php if ($total > 0): ?>
+                                    <td>
+                                        <?= htmlspecialchars($item["titulo"]) ?>
+                                    </td>
 
-                    <a href="finalizar-compra.php">
+                                    <td>
+                                        <?= htmlspecialchars($item["tipo_operacao"]) ?>
+                                    </td>
+
+                                    <td>
+                                        <?= $item["quantidade"] ?>
+                                    </td>
+
+                                    <td>
+                                        <?php if ($item["tipo_operacao"] == "COMPRA"): ?>
+                                            R$ <?= number_format($precoItem, 2, ',', '.') ?>
+                                        <?php else: ?>
+                                            -
+                                        <?php endif; ?>
+                                    </td>
+
+                                    <td>
+                                        <a href="remover-carrinho.php?id=<?= $item["id_item_carrinho"] ?>" class="btn-remover">
+                                            Remover
+                                        </a>
+                                    </td>
+
+                                </tr>
+
+                            <?php endforeach; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="carrinho-resumo">
+
+                    <div class="total-carrinho">
+                        <span>Total</span>
+
+                        <strong>
+                            R$ <?= number_format($total, 2, ',', '.') ?>
+                        </strong>
+                    </div>
+
+                    <a href="finalizar-compra.php" class="btn-finalizar">
                         Finalizar compra
                     </a>
 
-                <?php endif; ?>
+                </div>
+
+            <?php else: ?>
+
+                <div class="carrinho-vazio">
+                    <p>Seu carrinho está vazio.</p>
+
+                    <a href="livros.php">
+                        Ver produtos
+                    </a>
+                </div>
 
             <?php endif; ?>
 

@@ -1,0 +1,102 @@
+.finalizar-container {
+    width: 90%;
+    max-width: 850px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.finalizar-container h1 {
+    margin: 0 0 30px;
+    color: #222;
+    font-size: 28px;
+}
+
+/* RESUMO */
+
+.resumo-compra {
+    background-color: #f8f5fc;
+    padding: 22px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.resumo-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.resumo-linha span {
+    color: #555;
+}
+
+.resumo-linha strong {
+    color: #7040b5;
+    font-size: 22px;
+}
+
+/* FRETE */
+
+.frete-gratis {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid #e2d9ee;
+    color: #348447;
+    font-weight: 600;
+}
+
+/* FORM */
+
+.form-finalizar {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.campo-entrega {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-entrega label {
+    font-weight: 600;
+    color: #333;
+}
+
+.campo-entrega select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 15px;
+    outline: none;
+}
+
+.campo-entrega select:focus {
+    border-color: #7040b5;
+}
+
+/* BOTÃO */
+
+.btn-confirmar {
+    width: 100%;
+    padding: 14px;
+    background-color: #7040b5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-confirmar:hover {
+    background-color: #593096;
+    transform: translateY(-1px);
+}
