@@ -121,10 +121,11 @@ if ($carrinho) {
     $idCarrinho = (int) $carrinho["id_carrinho"];
 
     $sql = "SELECT
-                item_carrinho.*,
-                produto.titulo,
-                produto.preco,
-                produto.estoque
+            item_carrinho.*,
+            produto.titulo,
+            produto.preco,
+            produto.preco_promocional,
+            produto.estoque
             FROM item_carrinho
             INNER JOIN produto
                 ON item_carrinho.id_produto = produto.id_produto
@@ -141,7 +142,17 @@ $total = 0;
 foreach ($itens as $item) {
 
     if ($item["tipo_operacao"] == "COMPRA") {
-        $total += $item["preco"] * $item["quantidade"];
+
+        if (
+            !empty($item["preco_promocional"]) &&
+            $item["preco_promocional"] < $item["preco"]
+        ) {
+            $precoFinal = $item["preco_promocional"];
+        } else {
+            $precoFinal = $item["preco"];
+        }
+
+        $total += $precoFinal * $item["quantidade"];
     }
 }
 
@@ -218,8 +229,19 @@ foreach ($itens as $item) {
 
                                     <?php if ($item["tipo_operacao"] == "COMPRA"): ?>
 
+                                        <?php
+                                        if (
+                                            !empty($item["preco_promocional"]) &&
+                                            $item["preco_promocional"] < $item["preco"]
+                                        ) {
+                                            $precoItem = $item["preco_promocional"];
+                                        } else {
+                                            $precoItem = $item["preco"];
+                                        }
+                                        ?>
+
                                         R$ <?= number_format(
-                                            $item["preco"] * $item["quantidade"],
+                                            $precoItem * $item["quantidade"],
                                             2,
                                             ",",
                                             "."

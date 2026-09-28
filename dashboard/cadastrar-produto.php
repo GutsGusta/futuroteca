@@ -24,6 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "categoria" => $_POST["categoria"],
         "tipo" => $_POST["tipo"],
         "preco" => $_POST["preco"],
+        "preco_promocional" => !empty($_POST["preco_promocional"])
+            ? $_POST["preco_promocional"]
+            : null,
         "estoque" => $_POST["estoque"],
         "descricao" => $_POST["descricao"],
         "imagem" => $nomeImagem
@@ -88,10 +91,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <select id="categoria" name="categoria" required>
                         <option value="">Selecione</option>
+                        <option value="Ficção">Ficção</option>
                         <option value="Romance">Romance</option>
                         <option value="Fantasia">Fantasia</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Suspense">Suspense</option>
+                        <option value="Comédia">Comédia</option>
+                        <option value="Infantil">Infantil</option>
+                        <option value="Biografia">Biografia</option>
                         <option value="Terror">Terror</option>
-                        <option value="Ficção">Ficção</option>
+                        <option value="Programação">Programação</option>
+                        <option value="Artigo Científico">Artigo Científico</option>
+                        <option value="História">História</option>
+                        <option value="HQ e Mangás">HQ e Mangás</option>
+                        <option value="Literatura">Literatura</option>
                     </select>
                 </div>
 
@@ -118,6 +131,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="number" id="preco" name="preco" step="0.01" min="0" placeholder="0,00" required>
                 </div>
 
+                <div class="campo">
+                    <label for="preco_promocional">Preço promocional</label>
+
+                    <input type="number" id="preco_promocional" name="preco_promocional" step="0.01" min="0"
+                        placeholder="Opcional">
+                </div>
 
                 <div class="campo">
                     <label for="estoque">Estoque</label>

@@ -149,3 +149,15 @@ body {
     color: inherit;
     display: block;
 }
+
+.preco-promocao {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.preco-antigo {
+    color: #999;
+    font-size: 16px;
+    text-decoration: line-through;
+}

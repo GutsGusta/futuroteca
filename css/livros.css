@@ -1,92 +1,428 @@
+/* =========================
+   PÁGINA
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-    background-color: #f5f3f5;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f3f5;
 }
 
-main {
-    display: flex;
-    align-items: start;
-    justify-content: start;
-    gap: 30px;
+
+/* =========================
+   CATÁLOGO
+========================= */
+
+.catalogo {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 35px 30px;
 }
 
-/* BARRA LATERAL */
+
+/* =========================
+   SIDEBAR
+========================= */
 
 .barra-lateral {
-  width: 220px;
-  background-color: #4b4b73; 
-  color: #ffffff;
-  padding: 20px 15px;
-  min-height: 100vh;
+  width: 250px;
+  min-width: 250px;
+
+  background-color: #ffffff;
+
+  padding: 22px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-.livros-generos {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-   
-.livros-indv label {
+
+/* CABEÇALHO */
+
+.filtro-cabecalho {
   display: flex;
   align-items: center;
-  gap: 10px;
-  cursor: pointer;
+  justify-content: space-between;
+
+  padding-bottom: 15px;
+  margin-bottom: 5px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.filtro-cabecalho h2 {
+  margin: 0;
+
+  font-size: 21px;
+  color: #333;
+}
+
+.filtro-cabecalho a {
+  color: #8754c9;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.filtro-cabecalho a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+   GRUPOS DE FILTRO
+========================= */
+
+.grupo-filtro {
+  padding: 18px 0;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.grupo-filtro:last-child {
+  border-bottom: none;
+}
+
+.grupo-filtro h3 {
+  margin: 0 0 12px 0;
+
+  color: #333;
+
   font-size: 14px;
-  transition: opacity 0.2s ease;
+  font-weight: 700;
+
+  text-transform: uppercase;
 }
 
-.livros-indv label:hover {
-  opacity: 0.8;
+
+/* OPÇÕES */
+
+.opcoes-filtro {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
 }
- 
-.livros-indv input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
+
+.filtro-item {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 7px 8px;
+
+  border-radius: 8px;
+
+  color: #555;
+
+  font-size: 13px;
+
   cursor: pointer;
-  accent-color: #e53935; 
+
+  transition: 0.2s;
 }
 
-/* PRODUTOS */
+.filtro-item:hover {
+  background-color: #f3eaff;
+
+  color: #7040b5;
+}
+
+
+/* CHECKBOX / RADIO */
+
+.filtro-item input {
+  width: 15px;
+  height: 15px;
+
+  margin: 0;
+
+  cursor: pointer;
+
+  accent-color: #9561d9;
+}
+
+.filtro-item span {
+  line-height: 1.2;
+}
+
+
+/* =========================
+   PRODUTOS
+========================= */
+
+.produtos-area {
+  flex: 1;
+  min-width: 0;
+}
+
+
+/* TOPO */
+
+.produtos-topo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+}
+
+.produtos-topo h1 {
+  margin: 0 0 5px 0;
+
+  color: #333;
+
+  font-size: 30px;
+}
+
+.produtos-topo p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+.produtos-topo>span {
+  color: #777;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   GRID DOS PRODUTOS
+========================= */
 
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    width: 100%;
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill,
+      minmax(200px, 1fr));
+
+  gap: 22px;
 }
+
+.card-link {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+
+/* =========================
+   CARD
+========================= */
 
 .card {
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
+  background-color: #ffffff;
+
+  padding: 18px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+  transition: 0.25s;
 }
 
+.card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
+}
+
+
+/* IMAGEM */
+
 .card img {
-    height: 200px;
-    width: auto;
-    max-width: 100%;
-    object-fit: cover;
-    margin-bottom: 12px;
-    border-radius: 8px;
+  width: 100%;
+  height: 220px;
+
+  object-fit: contain;
+
+  margin-bottom: 15px;
+
+  border-radius: 10px;
+}
+
+
+/* INFORMAÇÕES */
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+}
+
+.card-categoria {
+  align-self: flex-start;
+
+  background-color: #f0e5ff;
+
+  color: #7540bd;
+
+  padding: 5px 9px;
+
+  margin-bottom: 10px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
 }
 
 .card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-    color: #333;
+  margin: 0 0 6px 0;
+
+  color: #333;
+
+  font-size: 17px;
 }
 
-.card p {
-    font-size: 0.9rem;
-    color: #666;
-    margin: 4px 0;
+.card-autor {
+  margin: 0 0 5px 0;
+
+  color: #777;
+
+  font-size: 13px;
+}
+
+.card-tipo {
+  margin: 0;
+
+  color: #999;
+
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+.card-preco {
+  margin: 15px 0 0 0;
+
+  color: #333;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   SEM RESULTADOS
+========================= */
+
+.sem-produtos {
+  grid-column: 1 / -1;
+
+  background-color: #ffffff;
+
+  padding: 50px;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sem-produtos h3 {
+  margin-top: 0;
+
+  color: #333;
+}
+
+.sem-produtos p {
+  color: #777;
+}
+
+.sem-produtos a {
+  color: #7540bd;
+
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 850px) {
+
+  .catalogo {
+    flex-direction: column;
+
+    padding: 25px 20px;
+  }
+
+  .barra-lateral {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .produtos-area {
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .produtos-topo {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(2,
+        minmax(0, 1fr));
+
+    gap: 12px;
+  }
+
+  .card img {
+    height: 180px;
+  }
+
+}
+
+.card-precos {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.card-preco-antigo {
+  color: #999;
+  font-size: 13px;
+  text-decoration: line-through;
+}
+
+.card-preco-promocional {
+  color: #7040b5;
+  font-size: 18px;
+  font-weight: bold;
 }

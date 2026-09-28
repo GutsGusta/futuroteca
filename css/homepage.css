@@ -491,3 +491,121 @@ main {
 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
 }
+
+/* =========================
+   AUTORES
+========================= */
+
+.autores {
+    margin-bottom: 30px;
+}
+
+.autores-lista {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.autor-item {
+    width: 170px;
+    height: 120px;
+
+    background-color: #fff;
+
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: #333;
+
+    font-family: 'Space Grotesk', sans-serif;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+    transition: 0.3s;
+}
+
+.autor-item .material-symbols-outlined {
+    font-size: 35px;
+    color: #636363;
+}
+
+.autor-item p {
+    margin: 0;
+    font-weight: 600;
+    text-align: center;
+}
+
+.autor-item:hover {
+    background-color: #dabfff;
+    transform: translateY(-3px);
+
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.10);
+}
+
+/* CABEÇALHO DAS SEÇÕES */
+
+.secao-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 90%;
+    margin: 0 auto 25px auto;
+}
+
+.secao-cabecalho .secao-titulo {
+    margin: 0;
+}
+
+.ver-todos {
+    background-color: #dabfff;
+    color: #333;
+
+    padding: 9px 16px;
+
+    border-radius: 20px;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.ver-todos:hover {
+    background-color: #c79cff;
+    transform: translateY(-2px);
+}
+
+.precos-promocao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.preco-antigo {
+    color: #999;
+    font-size: 13px;
+    text-decoration: line-through;
+}
+
+.preco-promocional {
+    color: #7040b5;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.categoria-botao {
+    text-decoration: none;
+    color: inherit;
+}

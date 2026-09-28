@@ -4,46 +4,111 @@ body {
     box-sizing: border-box;
 }
 
+/* =========================
+   HEADER
+========================= */
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 header {
     background-color: #dabfff;
 }
 
-header img {
-    width: 60px;
-    height: auto;
-}
+
+/* PARTE SUPERIOR */
 
 .header-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
+
+    padding: 12px 30px;
 }
 
-nav {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: min-content;
+.logo-header img {
+    width: 65px;
+    height: auto;
+}
+
+.header-acoes {
+    display: flex;
     align-items: center;
+
     gap: 20px;
-    padding: 10px;
 }
 
-nav a { 
-    color: black;
+.header-acoes img {
+    width: 38px;
+    height: 38px;
+
+    object-fit: contain;
+
+    transition: 0.2s;
+}
+
+.header-acoes img:hover {
+    transform: scale(1.08);
+}
+
+
+/* NAVEGAÇÃO */
+
+.header-nav {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 30px;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+
+/* LINKS */
+
+.header-nav a {
+    color: #222;
+
     text-decoration: none;
-    font-size: 20px;
+
+    font-size: 16px;
+
+    transition: 0.2s;
 }
 
-nav i {
-    margin-left: 100px;
+.header-nav a:hover {
+    color: #7040b5;
 }
+
+
+/* CATEGORIAS */
+
+.categorias-link {
+    font-weight: 600;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* LINKS CENTRAIS */
 
 .nav-bar {
     display: flex;
+
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+
+    gap: 35px;
+
+    margin: 0 auto;
 }
 
 footer {

@@ -10,10 +10,57 @@ try {
     die("Erro ao conectar ao banco de dados: " . $e->getMessage());
 }
 
-$sql = "SELECT * FROM produto LIMIT 5";
+$sql = "SELECT
+            produto.*,
+            COALESCE(SUM(item_pedido.quantidade), 0) AS total_vendido
+        FROM produto
+        LEFT JOIN item_pedido
+            ON produto.id_produto = item_pedido.id_produto
+        GROUP BY produto.id_produto
+        ORDER BY total_vendido DESC, produto.id_produto DESC
+        LIMIT 5";
+
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
+
 $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$sqlAutores = "SELECT DISTINCT autor
+               FROM produto
+               WHERE autor IS NOT NULL
+               AND autor != ''
+               ORDER BY autor
+               LIMIT 6";
+
+$stmtAutores = $pdo->prepare($sqlAutores);
+$stmtAutores->execute();
+
+$autores = $stmtAutores->fetchAll(PDO::FETCH_ASSOC);
+
+// E-BOOKS
+$sqlEbooks = "SELECT *
+              FROM produto
+              WHERE tipo = 'EBOOK'
+              ORDER BY id_produto DESC
+              LIMIT 5";
+
+$stmtEbooks = $pdo->prepare($sqlEbooks);
+$stmtEbooks->execute();
+
+// PROMOÇÕES
+$sqlPromocoes = "SELECT *
+                 FROM produto
+                 WHERE preco_promocional IS NOT NULL
+                 AND preco_promocional < preco
+                 ORDER BY id_produto DESC
+                 LIMIT 5";
+
+$stmtPromocoes = $pdo->prepare($sqlPromocoes);
+$stmtPromocoes->execute();
+
+$promocoes = $stmtPromocoes->fetchAll(PDO::FETCH_ASSOC);
+
+$ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -97,44 +144,60 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main>
         <section class="secao">
-            <h2 class="secao-titulo">Categorias em destaque</h2>
 
-            <div class="categoria-lista" role="tablist">
+            <h2 class="secao-titulo">
+                Categorias em destaque
+            </h2>
 
-                <button class="categoria-botao" role="tab">
-                    <span class="material-symbols-outlined">favorite</span>
+            <div class="categoria-lista">
+
+                <a href="livros.php?categoria=Romance" class="categoria-botao">
+                    <span class="material-symbols-outlined">
+                        favorite
+                    </span>
                     <p>Romance</p>
-                </button>
+                </a>
 
-                <button class="categoria-botao" role="tab">
-                    <span class="material-symbols-outlined">auto_awesome</span>
+                <a href="livros.php?categoria=Fantasia" class="categoria-botao">
+                    <span class="material-symbols-outlined">
+                        auto_awesome
+                    </span>
                     <p>Fantasia</p>
-                </button>
+                </a>
 
-                <button class="categoria-botao" role="tab">
-                    <span class="material-symbols-outlined">rocket_launch</span>
+                <a href="livros.php?categoria=Ficção" class="categoria-botao">
+                    <span class="material-symbols-outlined">
+                        rocket_launch
+                    </span>
                     <p>Ficção</p>
-                </button>
+                </a>
 
-                <button class="categoria-botao" role="tab">
-                    <span class="material-symbols-outlined">toys</span>
+                <a href="livros.php?categoria=Infantil" class="categoria-botao">
+                    <span class="material-symbols-outlined">
+                        toys
+                    </span>
                     <p>Infantil</p>
-                </button>
+                </a>
 
-                <button class="categoria-botao" role="tab">
-                    <span class="material-symbols-outlined">skull</span>
+                <a href="livros.php?categoria=Terror" class="categoria-botao">
+                    <span class="material-symbols-outlined">
+                        skull
+                    </span>
                     <p>Terror</p>
-                </button>
+                </a>
 
-                <button class="categoria-botao" role="tab">
-                    <span class="material-symbols-outlined">sell</span>
+                <a href="livros.php?promocao=1" class="categoria-botao">
+                    <span class="material-symbols-outlined">
+                        sell
+                    </span>
                     <p>Ofertas</p>
-                </button>
+                </a>
 
             </div>
+
         </section>
 
-        <section class="mais-vendidos">
+        <section class="mais-vendidos" id="mais-vendidos">
             <h2 class="secao-titulo">Os mais vendidos</h2>
 
             <div class="mais-vendidos-lista">
@@ -147,7 +210,45 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <h3 class="mais-vendidos-titulo"> <?= htmlspecialchars($produto['titulo']) ?> </h3>
                                 <h4 class="mais-vendidos-autor"> <?= htmlspecialchars($produto['autor']) ?> </h4>
                                 <p class="mais-vendidos-categoria"> <?= htmlspecialchars($produto['categoria']) ?> </p>
-                                <h5 class="mais-vendidos-preco"> R$ <?= number_format($produto['preco'], 2, ',', '.') ?> </h5>
+                                <?php if (
+                                    !empty($produto['preco_promocional']) &&
+                                    $produto['preco_promocional'] < $produto['preco']
+                                ): ?>
+
+                                    <div class="precos-promocao">
+
+                                        <span class="preco-antigo">
+                                            R$ <?= number_format(
+                                                $produto['preco'],
+                                                2,
+                                                ',',
+                                                '.'
+                                            ) ?>
+                                        </span>
+
+                                        <span class="preco-promocional">
+                                            R$ <?= number_format(
+                                                $produto['preco_promocional'],
+                                                2,
+                                                ',',
+                                                '.'
+                                            ) ?>
+                                        </span>
+
+                                    </div>
+
+                                <?php else: ?>
+
+                                    <h5 class="mais-vendidos-preco">
+                                        R$ <?= number_format(
+                                            $produto['preco'],
+                                            2,
+                                            ',',
+                                            '.'
+                                        ) ?>
+                                    </h5>
+
+                                <?php endif; ?>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -166,6 +267,185 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span class="material-symbols-outlined">chevron_right</span>
                 </button>
             </div>
+        </section>
+
+        <section class="secao autores" id="autores">
+
+            <h2 class="secao-titulo">
+                Autores
+            </h2>
+
+            <div class="autores-lista">
+
+                <?php if (!empty($autores)): ?>
+
+                    <?php foreach ($autores as $autor): ?>
+
+                        <a href="livros.php?autor=<?= urlencode($autor['autor']) ?>" class="autor-item">
+
+                            <span class="material-symbols-outlined">
+                                person
+                            </span>
+
+                            <p>
+                                <?= htmlspecialchars($autor['autor']) ?>
+                            </p>
+
+                        </a>
+
+                    <?php endforeach; ?>
+
+                <?php else: ?>
+
+                    <p>Nenhum autor encontrado.</p>
+
+                <?php endif; ?>
+
+            </div>
+
+        </section>
+
+        <section class="mais-vendidos" id="promocoes">
+
+            <div class="secao-cabecalho">
+
+                <h2 class="secao-titulo">
+                    Promoções
+                </h2>
+
+                <a href="livros.php?promocao=1" class="ver-todos">
+                    Ver todos →
+                </a>
+
+            </div>
+
+            <div class="mais-vendidos-lista">
+
+                <?php if (!empty($promocoes)): ?>
+
+                    <?php foreach ($promocoes as $produto): ?>
+
+                        <a class="mais-vendidos-item" href="compra.php?id=<?= $produto['id_produto'] ?>">
+
+                            <img src="<?= !empty($produto['imagem'])
+                                ? 'uploads/' . htmlspecialchars($produto['imagem'])
+                                : 'uploads/verity.png' ?>" alt="<?= htmlspecialchars($produto['titulo']) ?>">
+
+                            <div class="mais-vendidos-info">
+
+                                <h3 class="mais-vendidos-titulo">
+                                    <?= htmlspecialchars($produto['titulo']) ?>
+                                </h3>
+
+                                <h4 class="mais-vendidos-autor">
+                                    <?= htmlspecialchars($produto['autor']) ?>
+                                </h4>
+
+                                <p class="mais-vendidos-categoria">
+                                    <?= htmlspecialchars($produto['categoria']) ?>
+                                </p>
+
+                                <div class="precos-promocao">
+
+                                    <span class="preco-antigo">
+                                        R$ <?= number_format(
+                                            $produto['preco'],
+                                            2,
+                                            ',',
+                                            '.'
+                                        ) ?>
+                                    </span>
+
+                                    <span class="preco-promocional">
+                                        R$ <?= number_format(
+                                            $produto['preco_promocional'],
+                                            2,
+                                            ',',
+                                            '.'
+                                        ) ?>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                    <?php endforeach; ?>
+
+                <?php else: ?>
+
+                    <p>Nenhum produto em promoção.</p>
+
+                <?php endif; ?>
+
+            </div>
+
+        </section>
+
+        <section class="mais-vendidos" id="ebooks">
+
+            <div class="secao-cabecalho">
+
+                <h2 class="secao-titulo">
+                    E-books
+                </h2>
+
+                <a href="livros.php?tipo=EBOOK" class="ver-todos">
+                    Ver todos →
+                </a>
+
+            </div>
+
+            <div class="mais-vendidos-lista">
+
+                <?php if (!empty($ebooks)): ?>
+
+                    <?php foreach ($ebooks as $ebook): ?>
+
+                        <a class="mais-vendidos-item" href="compra.php?id=<?= $ebook['id_produto'] ?>">
+
+                            <img src="<?= !empty($ebook['imagem'])
+                                ? 'uploads/' . htmlspecialchars($ebook['imagem'])
+                                : 'uploads/verity.png' ?>" alt="<?= htmlspecialchars($ebook['titulo']) ?>">
+
+                            <div class="mais-vendidos-info">
+
+                                <h3 class="mais-vendidos-titulo">
+                                    <?= htmlspecialchars($ebook['titulo']) ?>
+                                </h3>
+
+                                <h4 class="mais-vendidos-autor">
+                                    <?= htmlspecialchars($ebook['autor']) ?>
+                                </h4>
+
+                                <p class="mais-vendidos-categoria">
+                                    <?= htmlspecialchars($ebook['categoria']) ?>
+                                </p>
+
+                                <h5 class="mais-vendidos-preco">
+                                    R$ <?= number_format(
+                                        $ebook['preco'],
+                                        2,
+                                        ',',
+                                        '.'
+                                    ) ?>
+                                </h5>
+
+                            </div>
+
+                        </a>
+
+                    <?php endforeach; ?>
+
+                <?php else: ?>
+
+                    <p>Nenhum e-book cadastrado.</p>
+
+                <?php endif; ?>
+
+            </div>
+
         </section>
 
     </main>

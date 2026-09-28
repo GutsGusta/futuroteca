@@ -28,6 +28,7 @@ $sql = "SELECT
             item_carrinho.*,
             produto.titulo,
             produto.preco,
+            produto.preco_promocional,
             produto.estoque
         FROM item_carrinho
         INNER JOIN produto
@@ -52,7 +53,17 @@ $total = 0;
 foreach ($itens as $item) {
 
     if ($item["tipo_operacao"] == "COMPRA") {
-        $total += $item["preco"] * $item["quantidade"];
+
+        if (
+            !empty($item["preco_promocional"]) &&
+            $item["preco_promocional"] < $item["preco"]
+        ) {
+            $precoFinal = $item["preco_promocional"];
+        } else {
+            $precoFinal = $item["preco"];
+        }
+
+        $total += $precoFinal * $item["quantidade"];
     }
 }
 
@@ -115,6 +126,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($item["tipo_operacao"] == "COMPRA") {
 
+                if (
+                    !empty($item["preco_promocional"]) &&
+                    $item["preco_promocional"] < $item["preco"]
+                ) {
+                    $precoUnitario = $item["preco_promocional"];
+                } else {
+                    $precoUnitario = $item["preco"];
+                }
+
                 create(
                     $pdo,
                     "item_pedido",
@@ -122,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         "id_pedido" => $idPedido,
                         "id_produto" => $idProduto,
                         "quantidade" => $quantidade,
-                        "preco_unitario" => $item["preco"]
+                        "preco_unitario" => $precoUnitario
                     ]
                 );
 
@@ -192,56 +212,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-<?php require_once "partials/header.php"; ?>
+    <?php require_once "partials/header.php"; ?>
 
-<main class="detalhes-container">
+    <main class="detalhes-container">
 
-    <div class="detalhes-info">
+        <div class="detalhes-info">
 
-        <h1>Finalizar compra</h1>
+            <h1>Finalizar compra</h1>
 
-        <p>
-            Total dos produtos:
-            <strong>
-                R$ <?= number_format($total, 2, ",", ".") ?>
-            </strong>
-        </p>
+            <p>
+                Total dos produtos:
+                <strong>
+                    R$ <?= number_format($total, 2, ",", ".") ?>
+                </strong>
+            </p>
 
-        <?php if ($total >= 120): ?>
+            <?php if ($total >= 120): ?>
 
-            <p>🎉 Sua compra possui frete grátis!</p>
+                <p>🎉 Sua compra possui frete grátis!</p>
 
-        <?php endif; ?>
+            <?php endif; ?>
 
-        <form method="POST">
+            <form method="POST">
 
-            <label for="tipo_entrega">
-                Forma de entrega:
-            </label>
+                <label for="tipo_entrega">
+                    Forma de entrega:
+                </label>
 
-            <select name="tipo_entrega" id="tipo_entrega" required>
+                <select name="tipo_entrega" id="tipo_entrega" required>
 
-                <option value="RETIRADA">
-                    Retirada
-                </option>
+                    <option value="RETIRADA">
+                        Retirada
+                    </option>
 
-                <option value="ENTREGA">
-                    Entrega
-                </option>
+                    <option value="ENTREGA">
+                        Entrega
+                    </option>
 
-            </select>
+                </select>
 
-            <br><br>
+                <br><br>
 
-            <button type="submit">
-                Confirmar
-            </button>
+                <button type="submit">
+                    Confirmar
+                </button>
 
-        </form>
+            </form>
 
-    </div>
+        </div>
 
-</main>
+    </main>
 
 </body>
 

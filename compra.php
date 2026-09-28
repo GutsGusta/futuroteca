@@ -35,8 +35,11 @@ if (!$produto) {
 
     <main class="detalhes-container">
         <div class="detalhes-imagem">
-            <img src="<?= htmlspecialchars($produto['imagem'] ?: 'uploads/verity.png') ?>"
-                alt="<?= htmlspecialchars($produto['titulo']) ?>">
+
+            <img src="<?= !empty($produto['imagem'])
+                ? 'uploads/' . htmlspecialchars($produto['imagem'])
+                : 'uploads/verity.png' ?>" alt="<?= htmlspecialchars($produto['titulo']) ?>">
+
         </div>
 
         <div class="detalhes-info">
@@ -46,8 +49,49 @@ if (!$produto) {
             <p class="categoria">Categoria: <span><?= htmlspecialchars($produto['categoria']) ?></span></p>
 
             <div class="preco-box">
+
                 <span class="preco-label">Preço:</span>
-                <span class="preco-valor">R$ <?= number_format($produto['preco'], 2, ',', '.') ?></span>
+
+                <?php if (
+                    !empty($produto['preco_promocional']) &&
+                    $produto['preco_promocional'] < $produto['preco']
+                ): ?>
+
+                    <div class="preco-promocao">
+
+                        <span class="preco-antigo">
+                            R$ <?= number_format(
+                                $produto['preco'],
+                                2,
+                                ',',
+                                '.'
+                            ) ?>
+                        </span>
+
+                        <span class="preco-valor">
+                            R$ <?= number_format(
+                                $produto['preco_promocional'],
+                                2,
+                                ',',
+                                '.'
+                            ) ?>
+                        </span>
+
+                    </div>
+
+                <?php else: ?>
+
+                    <span class="preco-valor">
+                        R$ <?= number_format(
+                            $produto['preco'],
+                            2,
+                            ',',
+                            '.'
+                        ) ?>
+                    </span>
+
+                <?php endif; ?>
+
             </div>
 
             <p class="estoque <?= $produto['estoque'] > 0 ? 'em-estoque' : 'sem-estoque' ?>">
