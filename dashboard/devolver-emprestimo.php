@@ -1,5 +1,5 @@
 <?php
-
+require_once 'proteger-admin.php';
 require_once '../crud.php';
 
 if (!isset($_GET["id"])) {

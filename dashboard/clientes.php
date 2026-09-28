@@ -1,8 +1,7 @@
 <?php
-
+require_once 'proteger-admin.php';
 require_once '../crud.php';
 
-// Busca somente os usuários que são clientes
 $clientes = readAll(
     $pdo,
     "usuario",

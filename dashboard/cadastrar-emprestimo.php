@@ -1,5 +1,5 @@
 <?php
-
+require_once 'proteger-admin.php';
 require_once '../crud.php';
 
 $clientes = readAll($pdo, "usuario", "tipo_usuario = 'CLIENTE'");

@@ -1,5 +1,5 @@
 <?php
-
+require_once 'proteger-admin.php';
 require_once '../crud.php';
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
