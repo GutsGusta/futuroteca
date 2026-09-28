@@ -631,7 +631,7 @@ $produtos =
 
     </main>
 
-
+<?php include "partials/footer.php"; ?>
 </body>
 
 </html>

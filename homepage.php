@@ -449,6 +449,7 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
         </section>
 
     </main>
+    <?php include "partials/footer.php"; ?>
 </body>
 
 </html>
