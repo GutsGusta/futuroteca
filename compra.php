@@ -21,6 +21,7 @@ if (!$produto) {
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,45 +29,66 @@ if (!$produto) {
     <link rel="stylesheet" href="./css/compra.css">
     <title><?= htmlspecialchars($produto['titulo']) ?> - Futuroteca</title>
 </head>
+
 <body>
-<?php require_once './partials/header.php'; ?>
+    <?php require_once './partials/header.php'; ?>
 
-<main class="detalhes-container">
-    <div class="detalhes-imagem">
-        <img src="<?= htmlspecialchars($produto['imagem'] ?: 'uploads/verity.png') ?>" alt="<?= htmlspecialchars($produto['titulo']) ?>">
-    </div>
-
-    <div class="detalhes-info">
-        <span class="badge-tipo"><?= htmlspecialchars($produto['tipo']) ?></span>
-        <h1><?= htmlspecialchars($produto['titulo']) ?></h1>
-        <p class="autor">Por <strong><?= htmlspecialchars($produto['autor']) ?></strong></p>
-        <p class="categoria">Categoria: <span><?= htmlspecialchars($produto['categoria']) ?></span></p>
-
-        <div class="preco-box">
-            <span class="preco-label">Preço:</span>
-            <span class="preco-valor">R$ <?= number_format($produto['preco'], 2, ',', '.') ?></span>
+    <main class="detalhes-container">
+        <div class="detalhes-imagem">
+            <img src="<?= htmlspecialchars($produto['imagem'] ?: 'uploads/verity.png') ?>"
+                alt="<?= htmlspecialchars($produto['titulo']) ?>">
         </div>
 
-        <p class="estoque <?= $produto['estoque'] > 0 ? 'em-estoque' : 'sem-estoque' ?>">
-            <?= $produto['estoque'] > 0 ? "Disponível em estoque ({$produto['estoque']} un.)" : "Indisponível no momento" ?>
-        </p>
+        <div class="detalhes-info">
+            <span class="badge-tipo"><?= htmlspecialchars($produto['tipo']) ?></span>
+            <h1><?= htmlspecialchars($produto['titulo']) ?></h1>
+            <p class="autor">Por <strong><?= htmlspecialchars($produto['autor']) ?></strong></p>
+            <p class="categoria">Categoria: <span><?= htmlspecialchars($produto['categoria']) ?></span></p>
 
-        <div class="descricao">
-            <h3>Descrição</h3>
-            <p><?= nl2br(htmlspecialchars($produto['descricao'] ?: 'Nenhuma descrição informada.')) ?></p>
-        </div>
-
-        <form action="carrinho.php" method="POST" class="compra-form">
-            <input type="hidden" name="id_produto" value="<?= $produto['id_produto'] ?>">
-            <div class="qtd-selector">
-                <label for="quantidade">Qtd:</label>
-                <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="<?= $produto['estoque'] ?>">
+            <div class="preco-box">
+                <span class="preco-label">Preço:</span>
+                <span class="preco-valor">R$ <?= number_format($produto['preco'], 2, ',', '.') ?></span>
             </div>
-            <button type="submit" class="btn-comprar" <?= $produto['estoque'] <= 0 ? 'disabled' : '' ?>>
-                Adicionar ao Carrinho
-            </button>
-        </form>
-    </div>
-</main>
+
+            <p class="estoque <?= $produto['estoque'] > 0 ? 'em-estoque' : 'sem-estoque' ?>">
+                <?= $produto['estoque'] > 0 ? "Disponível em estoque ({$produto['estoque']} un.)" : "Indisponível no momento" ?>
+            </p>
+
+            <div class="descricao">
+                <h3>Descrição</h3>
+                <p><?= nl2br(htmlspecialchars($produto['descricao'] ?: 'Nenhuma descrição informada.')) ?></p>
+            </div>
+
+            <form action="carrinho.php" method="POST" class="compra-form">
+
+                <input type="hidden" name="id_produto" value="<?= $produto['id_produto'] ?>">
+
+                <div class="qtd-selector">
+                    <label for="quantidade">Qtd:</label>
+
+                    <input type="number" id="quantidade" name="quantidade" value="1" min="1"
+                        max="<?= $produto['estoque'] ?>" required>
+                </div>
+
+                <div>
+                    <label for="tipo_operacao">Operação:</label>
+
+                    <select name="tipo_operacao" id="tipo_operacao" required>
+                        <option value="COMPRA">Comprar</option>
+
+                        <?php if ($produto["tipo"] == "LIVRO"): ?>
+                            <option value="EMPRESTIMO">Empréstimo</option>
+                        <?php endif; ?>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-comprar" <?= $produto['estoque'] <= 0 ? 'disabled' : '' ?>>
+                    Adicionar ao Carrinho
+                </button>
+
+            </form>
+        </div>
+    </main>
 </body>
+
 </html>

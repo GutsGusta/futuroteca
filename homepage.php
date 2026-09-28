@@ -1,9 +1,18 @@
+<?php
+
+require_once 'crud.php';
+
+$produtos = readAll($pdo, "produto");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <link rel="stylesheet" href="./css/homepage.css">
     <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/header-footer.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
@@ -14,10 +23,11 @@
 </head>
 
 <body>
+    <?php require_once './partials/header.php'; ?>
 
     <div class="container-banners">
         <div class="banner-imagens">
-            <img src="../futuroteca/uploads/banner1.png" alt="Banner 1" class="banner-ativo">
+            <img src="uploads/banner1.png" alt="Banner 1" class="banner-ativo">
             <img src="https://placehold.co/1905x504?text=Banner2" alt="Banner 2" class="banner-inativo">
             <img src="https://placehold.co/1905x504?text=Banner3" alt="Banner 3" class="banner-inativo">
         </div>
@@ -82,87 +92,51 @@
 
             <div class="mais-vendidos-lista">
                 <a class="mais-vendidos-item" href="#">
-                    <img src="https://placehold.co/150x190?text=Livro1" alt="">
-                    <div class="mais-vendidos-info">
-                        <h3 class="mais-vendidos-titulo">Livro 1</h3>
-                        <h4 class="mais-vendidos-autor">Autor 1</h4>
-                        <h5 class="mais-vendidos-preco">R$ 29,90</h5>
-                    </div>
-                </a>
-                <a class="mais-vendidos-item" href="#">
-                    <img src="https://placehold.co/150x190?text=Livro2" alt="">
-                    <div class="mais-vendidos-info">
-                        <h3 class="mais-vendidos-titulo">Livro 2</h3>
-                        <h4 class="mais-vendidos-autor">Autor 2</h4>
-                        <h5 class="mais-vendidos-preco">R$ 34,90</h5>
-                    </div>
-                </a>
-                <a class="mais-vendidos-item" href="#">
-                    <img src="https://placehold.co/150x190?text=Livro3" alt="">
-                    <div class="mais-vendidos-info">
-                        <h3 class="mais-vendidos-titulo">Livro 3</h3>
-                        <h4 class="mais-vendidos-autor">Autor 3</h4>
-                        <h5 class="mais-vendidos-preco">R$ 39,90</h5>
-                    </div>
-                </a>
-                <a class="mais-vendidos-item" href="#">
-                    <img src="https://placehold.co/150x190?text=Livro4" alt="">
-                    <div class="mais-vendidos-info">
-                        <h3 class="mais-vendidos-titulo">Livro 4</h3>
-                        <h4 class="mais-vendidos-autor">Autor 4</h4>
-                        <h5 class="mais-vendidos-preco">R$ 44,90</h5>
-                    </div>
-                </a>
-                <a class="mais-vendidos-item" href="#">
-                    <img src="https://placehold.co/150x190?text=Livro5" alt="">
-                    <div class="mais-vendidos-info">
-                        <h3 class="mais-vendidos-titulo">Livro 5</h3>
-                        <h4 class="mais-vendidos-autor">Autor 5</h4>
-                        <h5 class="mais-vendidos-preco">R$ 49,90</h5>
-                    </div>
-                </a>
+                    <?php if (count($produtos) == 0): ?>
 
-                <!-- SEGUNDA LINHA SÓ COPIADO -->
-                <a class="mais-vendidos-item" href="#">
-                    <img src="https://placehold.co/150x190?text=Livro6" alt="">
-                    <div class="mais-vendidos-info">
-                        <h3 class="mais-vendidos-titulo">Livro 6</h3>
-                        <h4 class="mais-vendidos-autor">Autor 6</h4>
-                        <h5 class="mais-vendidos-preco">R$ 54,90</h5>
-                    </div>
-                </a>
-                <a class="mais-vendidos-item" href="#">
-                    <img src="https://placehold.co/150x190?text=Livro7" alt="">
-                    <div class="mais-vendidos-info">
-                        <h3 class="mais-vendidos-titulo">Livro 7</h3>
-                        <h4 class="mais-vendidos-autor">Autor 7</h4>
-                        <h5 class="mais-vendidos-preco">R$ 59,90</h5>
-                    </div>
-                </a>
-                <a class="mais-vendidos-item" href="#">
-                    <img src="https://placehold.co/150x190?text=Livro8" alt="">
-                    <div class="mais-vendidos-info">
-                        <h3 class="mais-vendidos-titulo">Livro 8</h3>
-                        <h4 class="mais-vendidos-autor">Autor 8</h4>
-                        <h5 class="mais-vendidos-preco">R$ 64,90</h5>
-                    </div>
-                </a>
-                <a class="mais-vendidos-item" href="#">
-                    <img src="https://placehold.co/150x190?text=Livro9" alt="">
-                    <div class="mais-vendidos-info">
-                        <h3 class="mais-vendidos-titulo">Livro 9</h3>
-                        <h4 class="mais-vendidos-autor">Autor 9</h4>
-                        <h5 class="mais-vendidos-preco">R$ 69,90</h5>
-                    </div>
-                </a>
-                <a class="mais-vendidos-item" href="#">
-                    <img src="https://placehold.co/150x190?text=Livro10" alt="">
-                    <div class="mais-vendidos-info">
-                        <h3 class="mais-vendidos-titulo">Livro 10</h3>
-                        <h4 class="mais-vendidos-autor">Autor 10</h4>
-                        <h5 class="mais-vendidos-preco">R$ 74,90</h5>
-                    </div>
-                </a>
+                        <p>Nenhum produto cadastrado.</p>
+
+                    <?php else: ?>
+
+                        <?php foreach ($produtos as $produto): ?>
+
+                            <a class="mais-vendidos-item" href="compra.php?id=<?= $produto["id_produto"] ?>"
+                                >
+
+                                <img src="<?= !empty($produto["imagem"])
+                                    ? 'uploads/' . htmlspecialchars($produto["imagem"])
+                                    : 'uploads/verity.png' ?>"
+                                alt="
+                        <?= htmlspecialchars($produto["titulo"]) ?>"
+                                >
+
+                                <div class="mais-vendidos-info">
+
+                                    <h3 class="mais-vendidos-titulo">
+                                        <?= htmlspecialchars($produto["titulo"]) ?>
+                                    </h3>
+
+                                    <h4 class="mais-vendidos-autor">
+                                        <?= htmlspecialchars($produto["autor"]) ?>
+                                    </h4>
+
+                                    <h5 class="mais-vendidos-preco">
+                                        R$
+                                        <?= number_format(
+                                            $produto["preco"],
+                                            2,
+                                            ",",
+                                            "."
+                                        ) ?>
+                                    </h5>
+
+                                </div>
+
+                            </a>
+
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
             </div>
             <div class="mais-vendidos-passador">
                 <!-- AQUI TERA UM CODIGO PARA PASSAR DE PÁGINA AONDE CADA PAGINA TERÁ 10 MAIS-VENDIDO-ITEM -->

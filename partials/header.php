@@ -1,8 +1,8 @@
 <header>
     <div class="header-bar">
-        <a href="index.php"><img src="uploads/logo.png"></a><!-- LOGO -->
+        <a href="homepage.php"><img src="uploads/logo.png"></a><!-- LOGO -->
         <!-- BARRA DE PESQUISA -->
-        <a href="#"><img src="uploads/carrinho.png"></a><!-- CARRINHO -->
+        <a href="carrinho.php"><img src="uploads/carrinho.png"></a><!-- CARRINHO -->
         <a href="login.php"><img src="uploads/login.png"></a><!-- LOGIN -->
     </div>
     <nav>

@@ -3,8 +3,62 @@
 require_once '../crud.php';
 
 $produtos = readAll($pdo, "produto");
-
 $totalProdutos = count($produtos);
+
+$sqlUltimosPedidos = "SELECT
+                        pedido.*,
+                        usuario.nome AS nome_cliente
+                      FROM pedido
+                      INNER JOIN usuario
+                        ON pedido.id_usuario = usuario.id_usuario
+                      ORDER BY pedido.id_pedido DESC
+                      LIMIT 3";
+
+$stmtUltimosPedidos = $pdo->query($sqlUltimosPedidos);
+
+$ultimosPedidos = $stmtUltimosPedidos->fetchAll(PDO::FETCH_ASSOC);
+
+$clientes = readAll($pdo, "usuario", "tipo_usuario = 'CLIENTE'");
+$totalClientes = count($clientes);
+
+$pedidos = readAll($pdo, "pedido");
+$totalPedidos = count($pedidos);
+
+$emprestimosAtivos = readAll($pdo, "emprestimo", "status = 'ATIVO'");
+$totalEmprestimosAtivos = count($emprestimosAtivos);
+
+$sqlEmprestimosRecentes = "SELECT
+                            emprestimo.*,
+                            usuario.nome AS nome_cliente,
+                            produto.titulo AS nome_produto
+                           FROM emprestimo
+                           INNER JOIN usuario
+                            ON emprestimo.id_usuario = usuario.id_usuario
+                           INNER JOIN produto
+                            ON emprestimo.id_produto = produto.id_produto
+                           ORDER BY emprestimo.id_emprestimo DESC
+                           LIMIT 3";
+
+$stmtEmprestimosRecentes = $pdo->query($sqlEmprestimosRecentes);
+
+$emprestimosRecentes = $stmtEmprestimosRecentes->fetchAll(PDO::FETCH_ASSOC);
+
+$sqlDevolucoesProximas = "SELECT
+                            emprestimo.*,
+                            usuario.nome AS nome_cliente,
+                            produto.titulo AS nome_produto
+                          FROM emprestimo
+                          INNER JOIN usuario
+                            ON emprestimo.id_usuario = usuario.id_usuario
+                          INNER JOIN produto
+                            ON emprestimo.id_produto = produto.id_produto
+                          WHERE emprestimo.status = 'ATIVO'
+                          ORDER BY emprestimo.data_devolucao_prevista ASC
+                          LIMIT 3";
+
+$stmtDevolucoesProximas = $pdo->query($sqlDevolucoesProximas);
+
+$devolucoesProximas = $stmtDevolucoesProximas->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -46,7 +100,7 @@ $totalProdutos = count($produtos);
                 <div class="card-icone"></div>
 
                 <div>
-                    <h2>12</h2>
+                    <h2><?= $totalPedidos ?></h2>
                     <p>Pedidos</p>
                 </div>
             </div>
@@ -55,7 +109,7 @@ $totalProdutos = count($produtos);
                 <div class="card-icone"></div>
 
                 <div>
-                    <h2>18</h2>
+                    <h2><?= $totalEmprestimosAtivos ?></h2>
                     <p>Empréstimos ativos</p>
                 </div>
             </div>
@@ -64,7 +118,7 @@ $totalProdutos = count($produtos);
                 <div class="card-icone"></div>
 
                 <div>
-                    <h2>46</h2>
+                    <h2><?= $totalClientes ?></h2>
                     <p>Clientes cadastrados</p>
                 </div>
             </div>
@@ -91,32 +145,52 @@ $totalProdutos = count($produtos);
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>#105</td>
-                            <td>Ana Silva</td>
-                            <td>R$ 89,90</td>
-                            <td>
-                                <span class="status entregue">Entregue</span>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td>#104</td>
-                            <td>Lucas Souza</td>
-                            <td>R$ 135,00</td>
-                            <td>
-                                <span class="status enviado">Enviado</span>
-                            </td>
-                        </tr>
+                        <?php if (count($ultimosPedidos) == 0): ?>
 
-                        <tr>
-                            <td>#103</td>
-                            <td>Pedro Lima</td>
-                            <td>R$ 59,90</td>
-                            <td>
-                                <span class="status pendente">Pendente</span>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="4">
+                                    Nenhum pedido realizado.
+                                </td>
+                            </tr>
+
+                        <?php else: ?>
+
+                            <?php foreach ($ultimosPedidos as $pedido): ?>
+
+                                <tr>
+
+                                    <td>
+                                        #
+                                        <?= $pedido["id_pedido"] ?>
+                                    </td>
+
+                                    <td>
+                                        <?= htmlspecialchars($pedido["nome_cliente"]) ?>
+                                    </td>
+
+                                    <td>
+                                        R$
+                                        <?= number_format(
+                                            $pedido["valor_total"],
+                                            2,
+                                            ",",
+                                            "."
+                                        ) ?>
+                                    </td>
+
+                                    <td>
+                                        <span class="status <?= strtolower($pedido["status"]) ?>">
+                                            <?= htmlspecialchars($pedido["status"]) ?>
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+                            <?php endforeach; ?>
+
+                        <?php endif; ?>
+
                     </tbody>
                 </table>
 
@@ -140,32 +214,48 @@ $totalProdutos = count($produtos);
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>João Silva</td>
-                            <td>Dom Casmurro</td>
-                            <td>20/09/2026</td>
-                            <td>
-                                <span class="status ativo">Ativo</span>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td>Maria Souza</td>
-                            <td>O Cortiço</td>
-                            <td>22/09/2026</td>
-                            <td>
-                                <span class="status ativo">Ativo</span>
-                            </td>
-                        </tr>
+                        <?php if (count($emprestimosRecentes) == 0): ?>
 
-                        <tr>
-                            <td>Ana Costa</td>
-                            <td>1984</td>
-                            <td>18/09/2026</td>
-                            <td>
-                                <span class="status atrasado">Atrasado</span>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="4">
+                                    Nenhum empréstimo realizado.
+                                </td>
+                            </tr>
+
+                        <?php else: ?>
+
+                            <?php foreach ($emprestimosRecentes as $emprestimo): ?>
+
+                                <tr>
+
+                                    <td>
+                                        <?= htmlspecialchars($emprestimo["nome_cliente"]) ?>
+                                    </td>
+
+                                    <td>
+                                        <?= htmlspecialchars($emprestimo["nome_produto"]) ?>
+                                    </td>
+
+                                    <td>
+                                        <?= date(
+                                            "d/m/Y",
+                                            strtotime($emprestimo["data_devolucao_prevista"])
+                                        ) ?>
+                                    </td>
+
+                                    <td>
+                                        <span class="status <?= strtolower($emprestimo["status"]) ?>">
+                                            <?= htmlspecialchars($emprestimo["status"]) ?>
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+                            <?php endforeach; ?>
+
+                        <?php endif; ?>
+
                     </tbody>
                 </table>
 
@@ -186,23 +276,40 @@ $totalProdutos = count($produtos);
 
             <div class="lista-devolucoes">
 
-                <div class="devolucao-item">
-                    <div>
-                        <strong>Dom Casmurro</strong>
-                        <p>João Silva</p>
+                <?php if (count($devolucoesProximas) == 0): ?>
+
+                    <div class="devolucao-item">
+                        <p>Nenhuma devolução próxima.</p>
                     </div>
 
-                    <span>20/09/2026</span>
-                </div>
+                <?php else: ?>
 
-                <div class="devolucao-item">
-                    <div>
-                        <strong>O Cortiço</strong>
-                        <p>Maria Souza</p>
-                    </div>
+                    <?php foreach ($devolucoesProximas as $devolucao): ?>
 
-                    <span>22/09/2026</span>
-                </div>
+                        <div class="devolucao-item">
+
+                            <div>
+                                <strong>
+                                    <?= htmlspecialchars($devolucao["nome_produto"]) ?>
+                                </strong>
+
+                                <p>
+                                    <?= htmlspecialchars($devolucao["nome_cliente"]) ?>
+                                </p>
+                            </div>
+
+                            <span>
+                                <?= date(
+                                    "d/m/Y",
+                                    strtotime($devolucao["data_devolucao_prevista"])
+                                ) ?>
+                            </span>
+
+                        </div>
+
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
 
             </div>
 
