@@ -435,3 +435,40 @@ td {
     color: #555;
     background-color: #eee;
 }
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    flex: 1;
+}
+
+.sidebar-site {
+    padding: 15px;
+}
+
+.btn-site {
+    display: block;
+
+    padding: 12px 15px;
+
+    background-color: #dabfff;
+
+    color: #222;
+
+    border: 2px solid #222;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+}
+
+.btn-site:hover {
+    background-color: #c79cff;
+}

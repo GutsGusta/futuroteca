@@ -1,14 +1,20 @@
 <aside class="sidebar">
 
     <div class="sidebar-topo">
+
         <div class="logo-area">
+
             <img src="../uploads/logo.png" alt="Logo Futuroteca">
+
             <div>
                 <h2>Futuroteca</h2>
                 <span>PAINEL ADMIN</span>
             </div>
+
         </div>
+
     </div>
+
 
     <nav class="menu">
 
@@ -30,9 +36,6 @@
             Empréstimos
         </a>
 
-        <a href="../index.php" class="menu-link">
-            Ir para o Site
-        </a>
 
         <p class="menu-titulo">GESTÃO</p>
 
@@ -41,5 +44,14 @@
         </a>
 
     </nav>
+
+
+    <div class="sidebar-site">
+
+        <a href="../homepage.php" class="btn-site">
+            Ir para o Site
+        </a>
+
+    </div>
 
 </aside>
