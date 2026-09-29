@@ -26,91 +26,100 @@ $clientes = readAll(
 
 <body>
 
-<?php include 'partials/sidebar.php'; ?>
+    <?php include 'partials/sidebar.php'; ?>
 
-<main class="conteudo">
+    <main class="conteudo">
 
-    <div class="cabecalho-pagina">
+        <div class="cabecalho-pagina">
 
-        <div>
-            <h1>Clientes</h1>
-            <p>Clientes cadastrados na Futuroteca.</p>
+            <div>
+                <h1>Clientes</h1>
+                <p>Clientes cadastrados na Futuroteca.</p>
+            </div>
+
         </div>
 
-    </div>
+        <?php if (isset($_GET["excluido"])): ?>
+
+            <p class="mensagem-sucesso">
+                Cliente excluído com sucesso.
+            </p>
+
+        <?php endif; ?>
 
 
-    <div class="tabela-container">
+        <?php if (
+            isset($_GET["erro"]) &&
+            $_GET["erro"] === "cliente_vinculado"
+        ): ?>
 
-    <table>
+            <p class="mensagem-erro">
+                Não é possível excluir este cliente porque ele possui pedidos ou empréstimos registrados.
+            </p>
 
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>CPF</th>
-                <th>Telefone</th>
-                <th>Endereço</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
+        <?php endif; ?>
 
-        <tbody>
+        <div class="tabela-container">
 
-            <?php foreach ($clientes as $cliente): ?>
+            <table>
 
-                <tr>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>CPF</th>
+                        <th>Telefone</th>
+                        <th>Endereço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
 
-                    <td>
-                        <?= htmlspecialchars($cliente["nome"]) ?>
-                    </td>
+                <tbody>
 
-                    <td>
-                        <?= htmlspecialchars($cliente["email"]) ?>
-                    </td>
+                    <?php foreach ($clientes as $cliente): ?>
 
-                    <td>
-                        <?= htmlspecialchars($cliente["cpf"]) ?>
-                    </td>
+                        <tr>
 
-                    <td>
-                        <?= htmlspecialchars($cliente["telefone"] ?? "") ?>
-                    </td>
+                            <td>
+                                <?= htmlspecialchars($cliente["nome"]) ?>
+                            </td>
 
-                    <td>
-                        <?= htmlspecialchars($cliente["endereco"] ?? "") ?>
-                    </td>
+                            <td>
+                                <?= htmlspecialchars($cliente["email"]) ?>
+                            </td>
 
-                    <td>
+                            <td>
+                                <?= htmlspecialchars($cliente["cpf"]) ?>
+                            </td>
 
-                        <a
-                            href="editar-cliente.php?id=<?= $cliente["id_usuario"] ?>"
-                            class="btn-editar"
-                        >
-                            Editar
-                        </a>
+                            <td>
+                                <?= htmlspecialchars($cliente["telefone"] ?? "") ?>
+                            </td>
 
-                        <a
-                            href="excluir-cliente.php?id=<?= $cliente["id_usuario"] ?>"
-                            class="btn-excluir"
-                            onclick="return confirm('Tem certeza que deseja excluir este cliente?')"
-                        >
-                            Excluir
-                        </a>
+                            <td>
+                                <?= htmlspecialchars($cliente["endereco"] ?? "") ?>
+                            </td>
 
-                    </td>
+                            <td>
 
-                </tr>
+                                <a href="excluir-cliente.php?id=<?= $cliente["id_usuario"] ?>" class="btn-excluir"
+                                    onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
+                                    Excluir
+                                </a>
 
-            <?php endforeach; ?>
+                            </td>
 
-        </tbody>
+                        </tr>
 
-    </table>
+                    <?php endforeach; ?>
 
-</div>
+                </tbody>
 
-</main>
+            </table>
+
+        </div>
+
+    </main>
 
 </body>
 

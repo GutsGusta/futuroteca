@@ -28,6 +28,7 @@ $sql = "SELECT
             item_carrinho.*,
             produto.titulo,
             produto.preco,
+            produto.tipo,
             produto.preco_promocional,
             produto.estoque
         FROM item_carrinho
@@ -43,6 +44,16 @@ $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (count($itens) == 0) {
     header("Location: carrinho.php");
     exit;
+}
+
+$possuiProdutoFisico = false;
+
+foreach ($itens as $item) {
+
+    if ($item["tipo"] == "LIVRO") {
+        $possuiProdutoFisico = true;
+        break;
+    }
 }
 
 
@@ -72,21 +83,28 @@ foreach ($itens as $item) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $tipoEntrega = $_POST["tipo_entrega"];
+    if ($possuiProdutoFisico) {
 
-    // Retirada não possui frete
-    if ($tipoEntrega == "RETIRADA") {
+        $tipoEntrega = $_POST["tipo_entrega"] ?? "RETIRADA";
 
-        $frete = 0;
+        if ($tipoEntrega == "RETIRADA") {
+
+            $frete = 0;
+
+        } else {
+
+            if ($total >= 120) {
+                $frete = 0;
+            } else {
+                $frete = 15;
+            }
+        }
 
     } else {
 
-        // Frete grátis acima de R$ 120
-        if ($total >= 120) {
-            $frete = 0;
-        } else {
-            $frete = 15;
-        }
+        // Pedido totalmente digital
+        $tipoEntrega = "DIGITAL";
+        $frete = 0;
     }
 
     $valorFinal = $total + $frete;
@@ -118,7 +136,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $idProduto = (int) $item["id_produto"];
             $quantidade = (int) $item["quantidade"];
 
-            if ($quantidade > $item["estoque"]) {
+            if (
+                $item["tipo"] == "LIVRO" &&
+                $quantidade > $item["estoque"]
+            ) {
                 throw new Exception(
                     "Estoque insuficiente para " . $item["titulo"]
                 );
@@ -166,14 +187,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
 
-            $novoEstoque = $item["estoque"] - $quantidade;
+            if ($item["tipo"] == "LIVRO") {
 
-            update(
-                $pdo,
-                "produto",
-                ["estoque" => $novoEstoque],
-                "id_produto = $idProduto"
-            );
+                $novoEstoque = $item["estoque"] - $quantidade;
+
+                update(
+                    $pdo,
+                    "produto",
+                    ["estoque" => $novoEstoque],
+                    "id_produto = $idProduto"
+                );
+            }
         }
 
         delete(
@@ -231,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </strong>
                 </div>
 
-                <?php if ($total >= 120): ?>
+                <?php if ($possuiProdutoFisico && $total >= 120): ?>
 
                     <div class="frete-gratis">
                         🎉 Sua compra possui frete grátis!
@@ -243,23 +267,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form method="POST" class="form-finalizar">
 
-                <div class="campo-entrega">
+                <?php if ($possuiProdutoFisico): ?>
 
-                    <label for="tipo_entrega">
-                        Forma de entrega
-                    </label>
+                    <div class="campo-entrega">
 
-                    <select name="tipo_entrega" id="tipo_entrega" required>
-                        <option value="RETIRADA">
-                            Retirada
-                        </option>
+                        <label for="tipo_entrega">
+                            Forma de entrega
+                        </label>
 
-                        <option value="ENTREGA">
-                            Entrega em casa
-                        </option>
-                    </select>
+                        <select name="tipo_entrega" id="tipo_entrega" required>
+                            <option value="RETIRADA">
+                                Retirada
+                            </option>
 
-                </div>
+                            <option value="ENTREGA">
+                                Entrega em casa
+                            </option>
+                        </select>
+
+                    </div>
+
+                <?php else: ?>
+
+                    <div class="produto-digital">
+                        💻 <strong>Compra digital</strong>
+                        <p>
+                            Este pedido possui apenas produtos digitais.
+                            Não é necessário escolher entrega ou retirada.
+                        </p>
+                    </div>
+
+                <?php endif; ?>
 
                 <button type="submit" class="btn-confirmar">
                     Confirmar compra
