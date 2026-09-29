@@ -472,3 +472,40 @@ td {
 .btn-site:hover {
     background-color: #c79cff;
 }
+
+.btn-filtrar {
+    background-color: #7040b5;
+    color: white;
+
+    border: none;
+    border-radius: 7px;
+
+    padding: 10px 18px;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-filtrar:hover {
+    background-color: #593096;
+}
+
+.btn-limpar {
+    background-color: #eeeeee;
+    color: #444;
+
+    padding: 10px 18px;
+
+    border-radius: 7px;
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.btn-limpar:hover {
+    background-color: #dddddd;
+}

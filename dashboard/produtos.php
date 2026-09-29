@@ -2,8 +2,38 @@
 require_once 'proteger-admin.php';
 require_once '../crud.php';
 
-$produtos = readAll($pdo, "produto");
+$busca = $_GET["busca"] ?? "";
+$categoria = $_GET["categoria"] ?? "";
+$tipo = $_GET["tipo"] ?? "";
 
+$sql = "SELECT * FROM produto WHERE 1=1";
+$params = [];
+
+/* BUSCA POR TÍTULO OU AUTOR */
+if (!empty($busca)) {
+    $sql .= " AND (titulo LIKE ? OR autor LIKE ?)";
+    $params[] = "%" . $busca . "%";
+    $params[] = "%" . $busca . "%";
+}
+
+/* FILTRO POR CATEGORIA */
+if (!empty($categoria)) {
+    $sql .= " AND categoria = ?";
+    $params[] = $categoria;
+}
+
+/* FILTRO POR TIPO */
+if (!empty($tipo)) {
+    $sql .= " AND tipo = ?";
+    $params[] = $tipo;
+}
+
+$sql .= " ORDER BY titulo";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+
+$produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -35,26 +65,71 @@ $produtos = readAll($pdo, "produto");
         </div>
 
 
-        <div class="filtros-produtos">
+        <form method="GET" class="filtros-produtos">
 
-            <input type="text" placeholder="Buscar por título ou autor...">
+            <input type="text" name="busca" placeholder="Buscar por título ou autor..."
+                value="<?= htmlspecialchars($busca) ?>">
 
-            <select>
+            <select name="categoria">
+
                 <option value="">Todas as categorias</option>
-                <option>Romance</option>
-                <option>Fantasia</option>
-                <option>Terror</option>
-                <option>Ficção</option>
+
+                <?php
+                $categorias = [
+                    "Ficção",
+                    "Romance",
+                    "Fantasia",
+                    "Aventura",
+                    "Suspense",
+                    "Comédia",
+                    "Infantil",
+                    "Biografia",
+                    "Terror",
+                    "Programação",
+                    "Artigo Científico",
+                    "História",
+                    "HQ e Mangás",
+                    "Literatura"
+                ];
+                ?>
+
+                <?php foreach ($categorias as $cat): ?>
+
+                    <option value="<?= htmlspecialchars($cat) ?>" <?= $categoria === $cat ? "selected" : "" ?>>
+                        <?= htmlspecialchars($cat) ?>
+                    </option>
+
+                <?php endforeach; ?>
+
             </select>
 
-            <select>
+            <select name="tipo">
+
                 <option value="">Todos os tipos</option>
-                <option>Livro</option>
-                <option>E-book</option>
-                <option>Artigo</option>
+
+                <option value="LIVRO" <?= $tipo === "LIVRO" ? "selected" : "" ?>>
+                    Livro
+                </option>
+
+                <option value="EBOOK" <?= $tipo === "EBOOK" ? "selected" : "" ?>>
+                    E-book
+                </option>
+
+                <option value="ARTIGO" <?= $tipo === "ARTIGO" ? "selected" : "" ?>>
+                    Artigo
+                </option>
+
             </select>
 
-        </div>
+            <button type="submit" class="btn-filtrar">
+                Filtrar
+            </button>
+
+            <a href="produtos.php" class="btn-limpar">
+                Limpar
+            </a>
+
+        </form>
 
 
         <div class="tabela-produtos">

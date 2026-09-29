@@ -2,17 +2,37 @@
 require_once 'proteger-admin.php';
 require_once '../crud.php';
 
+$cliente = $_GET["cliente"] ?? "";
+$status = $_GET["status"] ?? "";
+
 $sql = "SELECT
             pedido.*,
             usuario.nome AS nome_cliente
         FROM pedido
         INNER JOIN usuario
             ON pedido.id_usuario = usuario.id_usuario
-        ORDER BY pedido.id_pedido DESC";
+        WHERE 1=1";
 
-$stmt = $pdo->query($sql);
+$params = [];
+
+/* FILTRO POR CLIENTE */
+if (!empty($cliente)) {
+    $sql .= " AND usuario.nome LIKE ?";
+    $params[] = "%" . $cliente . "%";
+}
+
+/* FILTRO POR STATUS */
+if (!empty($status)) {
+    $sql .= " AND pedido.status = ?";
+    $params[] = $status;
+}
+
+$sql .= " ORDER BY pedido.id_pedido DESC";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+
 $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +57,49 @@ $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <h1>Pedidos</h1>
             <p>Gerencie os pedidos realizados na Futuroteca.</p>
         </div>
+
+        <form method="GET" class="filtros-produtos">
+
+            <input type="text" name="cliente" placeholder="Buscar por cliente..."
+                value="<?= htmlspecialchars($cliente) ?>">
+
+            <select name="status">
+
+                <option value="">
+                    Todos os status
+                </option>
+
+                <option value="PENDENTE" <?= $status === "PENDENTE" ? "selected" : "" ?>>
+                    Pendente
+                </option>
+
+                <option value="PAGO" <?= $status === "PAGO" ? "selected" : "" ?>>
+                    Pago
+                </option>
+
+                <option value="ENVIADO" <?= $status === "ENVIADO" ? "selected" : "" ?>>
+                    Enviado
+                </option>
+
+                <option value="ENTREGUE" <?= $status === "ENTREGUE" ? "selected" : "" ?>>
+                    Entregue
+                </option>
+
+                <option value="CANCELADO" <?= $status === "CANCELADO" ? "selected" : "" ?>>
+                    Cancelado
+                </option>
+
+            </select>
+
+            <button type="submit" class="btn-filtrar">
+                Filtrar
+            </button>
+
+            <a href="pedidos.php" class="btn-limpar">
+                Limpar
+            </a>
+
+        </form>
 
         <div class="painel-dashboard">
 

@@ -4,13 +4,8 @@ require_once '../crud.php';
 
 $hoje = date("Y-m-d");
 
-$sqlAtrasados = "UPDATE emprestimo
-                 SET status = 'ATRASADO'
-                 WHERE data_devolucao_prevista < ?
-                 AND status = 'ATIVO'";
-
-$stmtAtrasados = $pdo->prepare($sqlAtrasados);
-$stmtAtrasados->execute([$hoje]);
+$busca = $_GET["busca"] ?? "";
+$status = $_GET["status"] ?? "";
 
 $sql = "SELECT 
             emprestimo.*,
@@ -21,9 +16,32 @@ $sql = "SELECT
             ON emprestimo.id_usuario = usuario.id_usuario
         INNER JOIN produto 
             ON emprestimo.id_produto = produto.id_produto
-        ORDER BY emprestimo.id_emprestimo DESC";
+        WHERE 1=1";
 
-$stmt = $pdo->query($sql);
+$params = [];
+
+/* BUSCA POR CLIENTE OU PRODUTO */
+if (!empty($busca)) {
+    $sql .= " AND (
+                usuario.nome LIKE ?
+                OR produto.titulo LIKE ?
+              )";
+
+    $params[] = "%" . $busca . "%";
+    $params[] = "%" . $busca . "%";
+}
+
+/* FILTRO POR STATUS */
+if (!empty($status)) {
+    $sql .= " AND emprestimo.status = ?";
+    $params[] = $status;
+}
+
+$sql .= " ORDER BY emprestimo.id_emprestimo DESC";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+
 $emprestimos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -50,6 +68,41 @@ $emprestimos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <h1>Empréstimos</h1>
             <p>Gerencie os empréstimos realizados na Futuroteca.</p>
         </div>
+
+        <form method="GET" class="filtros-produtos">
+
+            <input type="text" name="busca" placeholder="Buscar por cliente ou produto..."
+                value="<?= htmlspecialchars($busca) ?>">
+
+            <select name="status">
+
+                <option value="">
+                    Todos os status
+                </option>
+
+                <option value="ATIVO" <?= $status === "ATIVO" ? "selected" : "" ?>>
+                    Ativo
+                </option>
+
+                <option value="ATRASADO" <?= $status === "ATRASADO" ? "selected" : "" ?>>
+                    Atrasado
+                </option>
+
+                <option value="DEVOLVIDO" <?= $status === "DEVOLVIDO" ? "selected" : "" ?>>
+                    Devolvido
+                </option>
+
+            </select>
+
+            <button type="submit" class="btn-filtrar">
+                Filtrar
+            </button>
+
+            <a href="emprestimos.php" class="btn-limpar">
+                Limpar
+            </a>
+
+        </form>
 
         <div class="painel-dashboard">
 
