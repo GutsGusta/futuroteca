@@ -15,7 +15,6 @@ try {
 } catch (PDOException $e) {
 
     die("Erro ao conectar ao banco de dados: " . $e->getMessage());
-
 }
 
 
@@ -23,49 +22,50 @@ try {
    FILTROS RECEBIDOS
 ========================= */
 
-$categoriasSelecionadas =
-    isset($_GET['categoria'])
-    ? (array) $_GET['categoria']
+$busca = isset($_GET["busca"])
+    ? trim($_GET["busca"])
+    : "";
+
+$categoriasSelecionadas = isset($_GET["categoria"])
+    ? (array) $_GET["categoria"]
     : [];
 
-$autoresSelecionados =
-    isset($_GET['autor'])
-    ? (array) $_GET['autor']
+$autoresSelecionados = isset($_GET["autor"])
+    ? (array) $_GET["autor"]
     : [];
 
-$tiposSelecionados =
-    isset($_GET['tipo'])
-    ? (array) $_GET['tipo']
+$tiposSelecionados = isset($_GET["tipo"])
+    ? (array) $_GET["tipo"]
     : [];
 
-$precoSelecionado =
-    isset($_GET['preco'])
-    ? $_GET['preco']
+$precoSelecionado = isset($_GET["preco"])
+    ? $_GET["preco"]
     : "";
 
 $somentePromocoes =
-    isset($_GET['promocao']) &&
-    $_GET['promocao'] == "1";
+    isset($_GET["promocao"]) &&
+    $_GET["promocao"] == "1";
+
 
 /* =========================
    CATEGORIAS
 ========================= */
 
 $categorias = [
-    'Ficção',
-    'Romance',
-    'Fantasia',
-    'Aventura',
-    'Suspense',
-    'Comédia',
-    'Infantil',
-    'Biografia',
-    'Terror',
-    'Programação',
-    'Artigo Científico',
-    'História',
-    'HQ e Mangás',
-    'Literatura'
+    "Ficção",
+    "Romance",
+    "Fantasia",
+    "Aventura",
+    "Suspense",
+    "Comédia",
+    "Infantil",
+    "Biografia",
+    "Terror",
+    "Programação",
+    "Artigo Científico",
+    "História",
+    "HQ e Mangás",
+    "Literatura"
 ];
 
 
@@ -80,7 +80,6 @@ $sqlAutores = "SELECT DISTINCT autor
                ORDER BY autor";
 
 $stmtAutores = $pdo->prepare($sqlAutores);
-
 $stmtAutores->execute();
 
 $autores = $stmtAutores->fetchAll(PDO::FETCH_COLUMN);
@@ -93,124 +92,148 @@ $autores = $stmtAutores->fetchAll(PDO::FETCH_COLUMN);
 $sql = "SELECT * FROM produto";
 
 $condicoes = [];
-
 $params = [];
 
 
-/* FILTRO POR CATEGORIA */
+/* =========================
+   BUSCA POR TÍTULO OU AUTOR
+========================= */
+
+if ($busca !== "") {
+
+    $condicoes[] = "(titulo LIKE ? OR autor LIKE ?)";
+
+    $params[] = "%" . $busca . "%";
+    $params[] = "%" . $busca . "%";
+}
+
+
+/* =========================
+   FILTRO POR CATEGORIA
+========================= */
 
 if (!empty($categoriasSelecionadas)) {
 
     $marcadores = implode(
-        ',',
+        ",",
         array_fill(
             0,
             count($categoriasSelecionadas),
-            '?'
+            "?"
         )
     );
 
-    $condicoes[] =
-        "categoria IN ($marcadores)";
+    $condicoes[] = "categoria IN ($marcadores)";
 
     foreach ($categoriasSelecionadas as $categoria) {
         $params[] = $categoria;
     }
-
 }
 
 
-/* FILTRO POR AUTOR */
+/* =========================
+   FILTRO POR AUTOR
+========================= */
 
 if (!empty($autoresSelecionados)) {
 
     $marcadores = implode(
-        ',',
+        ",",
         array_fill(
             0,
             count($autoresSelecionados),
-            '?'
+            "?"
         )
     );
 
-    $condicoes[] =
-        "autor IN ($marcadores)";
+    $condicoes[] = "autor IN ($marcadores)";
 
     foreach ($autoresSelecionados as $autor) {
         $params[] = $autor;
     }
-
 }
 
 
-/* FILTRO POR TIPO */
+/* =========================
+   FILTRO POR TIPO
+========================= */
 
 if (!empty($tiposSelecionados)) {
 
     $marcadores = implode(
-        ',',
+        ",",
         array_fill(
             0,
             count($tiposSelecionados),
-            '?'
+            "?"
         )
     );
 
-    $condicoes[] =
-        "tipo IN ($marcadores)";
+    $condicoes[] = "tipo IN ($marcadores)";
 
     foreach ($tiposSelecionados as $tipo) {
         $params[] = $tipo;
     }
-
 }
 
-/* FILTRO POR PROMOÇÃO */
+
+/* =========================
+   FILTRO POR PROMOÇÃO
+========================= */
 
 if ($somentePromocoes) {
 
-    $condicoes[] = "preco_promocional IS NOT NULL
-                    AND preco_promocional < preco";
-
+    $condicoes[] = "
+        preco_promocional IS NOT NULL
+        AND preco_promocional < preco
+    ";
 }
 
-/* FILTRO POR PREÇO */
 
-if ($precoSelecionado == "ate30") {
+/* =========================
+   FILTRO POR PREÇO
+========================= */
+
+if ($precoSelecionado === "ate30") {
 
     $condicoes[] = "preco <= 30";
 
-} elseif ($precoSelecionado == "30a60") {
+} elseif ($precoSelecionado === "30a60") {
 
-    $condicoes[] =
-        "preco > 30 AND preco <= 60";
+    $condicoes[] = "preco > 30 AND preco <= 60";
 
-} elseif ($precoSelecionado == "acima60") {
+} elseif ($precoSelecionado === "acima60") {
 
     $condicoes[] = "preco > 60";
-
 }
 
 
-/* MONTA O WHERE */
+/* =========================
+   MONTA O WHERE
+========================= */
 
 if (!empty($condicoes)) {
 
     $sql .= " WHERE " .
         implode(" AND ", $condicoes);
-
 }
 
+
+/* =========================
+   ORDENA
+========================= */
 
 $sql .= " ORDER BY titulo";
 
 
-$stmt = $pdo->prepare($sql);
+/* =========================
+   EXECUTA
+========================= */
 
+$stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 
-$produtos =
-    $stmt->fetchAll(PDO::FETCH_ASSOC);
+$produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -631,7 +654,7 @@ $produtos =
 
     </main>
 
-<?php include "partials/footer.php"; ?>
+    <?php include "partials/footer.php"; ?>
 </body>
 
 </html>

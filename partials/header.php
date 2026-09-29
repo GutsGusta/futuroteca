@@ -4,10 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
-<link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 
 <header class="site-header">
 
@@ -16,6 +13,18 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="homepage.php" class="logo-header">
             <img src="uploads/logo.png" alt="Futuroteca">
         </a>
+
+        <form action="livros.php" method="GET" class="header-busca">
+
+            <input type="text" name="busca" placeholder="Busque por título ou autor..." autocomplete="off">
+
+            <button type="submit" aria-label="Buscar">
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+            </button>
+
+        </form>
 
         <div class="header-acoes">
 
