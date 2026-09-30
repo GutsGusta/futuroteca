@@ -18,7 +18,7 @@ $sql = "SELECT
             ON produto.id_produto = item_pedido.id_produto
         GROUP BY produto.id_produto
         ORDER BY total_vendido DESC, produto.id_produto DESC
-        LIMIT 5";
+        LIMIT 15    ";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
@@ -93,9 +93,8 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
         <div class="banner-imagens">
 
             <img src="../futuroteca/uploads/banner1.png" alt="Banner 1" class="banner banner-1">
-            <img src="https://placehold.co/1905x504?text=Banner2" alt="Banner 2" class="banner banner-2">
-            <img src="https://placehold.co/1905x504?text=Banner3" alt="Banner 3" class="banner banner-3">
-
+            <img src="../futuroteca/uploads/banner2.png" alt="Banner 2" class="banner banner-2">
+            <img src="../futuroteca/uploads/banner3.png" alt="Banner 3" class="banner banner-3">
         </div>
 
         <label for="banner-3" class="banner-seta anterior banner-1-anterior">
@@ -258,13 +257,17 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
             </div>
 
             <div class="mais-vendidos-passador">
-                <!-- AQUI TERA UM CODIGO PARA PASSAR DE PÁGINA AONDE CADA PAGINA TERÁ 10 MAIS-VENDIDO-ITEM -->
-                <button class="mais-vendidos-seta">
-                    <span class="material-symbols-outlined">chevron_left</span>
+
+                <button type="button" class="mais-vendidos-seta" id="mais-vendidos-anterior">
+                    <span class="material-symbols-outlined">
+                        chevron_left
+                    </span>
                 </button>
 
-                <button class="mais-vendidos-seta">
-                    <span class="material-symbols-outlined">chevron_right</span>
+                <button type="button" class="mais-vendidos-seta" id="mais-vendidos-proximo">
+                    <span class="material-symbols-outlined">
+                        chevron_right
+                    </span>
                 </button>
             </div>
         </section>
@@ -450,6 +453,38 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
 
     </main>
     <?php include "partials/footer.php"; ?>
+    <script>
+
+        const listaMaisVendidos =
+            document.querySelector("#mais-vendidos .mais-vendidos-lista");
+
+        const botaoAnterior =
+            document.getElementById("mais-vendidos-anterior");
+
+        const botaoProximo =
+            document.getElementById("mais-vendidos-proximo");
+
+
+        botaoProximo.addEventListener("click", function () {
+
+            listaMaisVendidos.scrollBy({
+                left: listaMaisVendidos.clientWidth,
+                behavior: "smooth"
+            });
+
+        });
+
+
+        botaoAnterior.addEventListener("click", function () {
+
+            listaMaisVendidos.scrollBy({
+                left: -listaMaisVendidos.clientWidth,
+                behavior: "smooth"
+            });
+
+        });
+
+    </script>
 </body>
 
 </html>

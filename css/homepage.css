@@ -609,3 +609,23 @@ main {
     text-decoration: none;
     color: inherit;
 }
+
+
+/* CARROSSEL MAIS VENDIDOS */
+
+#mais-vendidos .mais-vendidos-lista {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 18px;
+
+    width: 90%;
+    margin: 0 auto;
+
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+#mais-vendidos .mais-vendidos-item {
+    flex: 0 0 calc((100% - 72px) / 5);
+    box-sizing: border-box;
+}
