@@ -180,17 +180,19 @@ $emprestimos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                     <?php if ($emprestimo["status"] == "ATIVO" || $emprestimo["status"] == "ATRASADO"): ?>
 
-                                        <a href="prorrogar-emprestimo.php?id=<?= $emprestimo["id_emprestimo"] ?>"
+                                       <button> <a href="prorrogar-emprestimo.php?id=<?= $emprestimo["id_emprestimo"] ?>"
                                             onclick="return confirm('Deseja prorrogar este empréstimo por mais 7 dias?')">
                                             Prorrogar
                                         </a>
+                                        </button>
 
                                         |
 
-                                        <a href="devolver-emprestimo.php?id=<?= $emprestimo["id_emprestimo"] ?>"
+                                        <button><a href="devolver-emprestimo.php?id=<?= $emprestimo["id_emprestimo"] ?>"
                                             onclick="return confirm('Confirmar devolução deste empréstimo?')">
                                             Devolver
                                         </a>
+                                        </button>
 
                                     <?php else: ?>
 

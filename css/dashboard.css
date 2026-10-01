@@ -509,3 +509,8 @@ td {
 .btn-limpar:hover {
     background-color: #dddddd;
 }
+
+a {
+    text-decoration: none;
+    color: #222;
+}
