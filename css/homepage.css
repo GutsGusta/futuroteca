@@ -6,9 +6,7 @@ body {
 }
 
 
-/* =========================
-   BANNERS
-========================= */
+/* BANNERS */
 
 .container-banners {
     width: 100%;
@@ -182,10 +180,7 @@ body {
 }
 
 
-/* =========================
-   CONTEÚDO PRINCIPAL
-========================= */
-
+/* /* CONTEUDO PRINCIPAL */
 main {
     display: flex;
 
@@ -198,9 +193,7 @@ main {
 }
 
 
-/* =========================
-   SEÇÕES
-========================= */
+/* SEÇÕES */
 
 .secao {
     display: flex;
@@ -228,9 +221,7 @@ main {
 }
 
 
-/* =========================
-   CATEGORIAS
-========================= */
+/* CATEGORIAS */
 
 .categoria-lista {
     display: flex;
@@ -300,9 +291,7 @@ main {
 }
 
 
-/* =========================
-   MAIS VENDIDOS
-========================= */
+/* MAIS VENDIDOS */
 
 .mais-vendidos {
     display: flex;
@@ -492,9 +481,7 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
 }
 
-/* =========================
-   AUTORES
-========================= */
+/* AUTORES */
 
 .autores {
     margin-bottom: 30px;
@@ -628,4 +615,54 @@ main {
 #mais-vendidos .mais-vendidos-item {
     flex: 0 0 calc((100% - 72px) / 5);
     box-sizing: border-box;
+}
+
+.mais-vendidos-lista {
+    display: flex;
+    gap: 20px;
+
+    overflow-x: hidden;
+
+    scroll-behavior: smooth;
+}
+
+.mais-vendidos-item {
+    flex: 0 0 calc(20% - 16px);
+
+    min-width: calc(20% - 16px);
+}
+
+
+/* PASSADORES */
+
+.mais-vendidos-passador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.mais-vendidos-seta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background-color: #4b4b73;
+    color: white;
+
+    transition: 0.2s;
+}
+
+.mais-vendidos-seta:hover {
+    transform: scale(1.08);
 }
