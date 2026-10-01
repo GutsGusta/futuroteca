@@ -40,8 +40,8 @@ h1 {
 .form {
     color: #4f518c;
     display: flex;
-    align-items: start;
-    justify-content: start;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 

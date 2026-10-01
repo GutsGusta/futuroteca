@@ -85,10 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <input type="password" name="senha" required>
             </label>
-<<<<<<< HEAD
-            <a href="cadastro.php">Não possui conta? Cadastra-se aqui!</a>
-            <button type="submit">Login</button>
-=======
 
             <a href="cadastro.php">
                 Não possui conta? Cadastre-se aqui!
@@ -98,7 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 Login
             </button>
 
->>>>>>> 446f373 (Implantação do Back-end no Dashboard e no Login)
         </form>
     </main>
 </body>
