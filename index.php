@@ -70,6 +70,7 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <link rel="stylesheet" href="./css/homepage.css">
     <link rel="stylesheet" href="./css/reset.css">
+    <link rel="icon" type="x-icon" href="./uploads/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
@@ -77,7 +78,7 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="./css/header-footer.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOMEPAGE</title>
+    <title>Home Page</title>
 </head>
 
 <body>

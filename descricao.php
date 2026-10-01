@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/descricao.css">
     <link rel="stylesheet" href="./css/header-footer.css">
+    <link rel="icon" type="x-icon" href="./uploads/logo.png">
     <title>Descrição Produto</title>
 </head>
 <body>

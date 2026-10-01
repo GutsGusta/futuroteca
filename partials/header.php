@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <div class="header-principal">
 
-        <a href="homepage.php" class="logo-header">
+        <a href="index.php" class="logo-header">
             <img src="uploads/logo.png" alt="Futuroteca">
         </a>
 
@@ -88,10 +88,10 @@ if (session_status() === PHP_SESSION_NONE) {
         </a>
 
         <div class="nav-bar">
-            <a href="homepage.php#mais-vendidos">Mais Vendidos</a>
-            <a href="homepage.php#autores">Autores</a>
-            <a href="homepage.php#promocoes">Promoções</a>
-            <a href="homepage.php#ebooks">E-books</a>
+            <a href="index.php#mais-vendidos">Mais Vendidos</a>
+            <a href="index.php#autores">Autores</a>
+            <a href="index.php#promocoes">Promoções</a>
+            <a href="index.php#ebooks">E-books</a>
         </div>
 
     </nav>

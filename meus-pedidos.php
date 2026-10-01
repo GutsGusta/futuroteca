@@ -43,15 +43,8 @@ $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <title>Meus Pedidos | Futuroteca</title>
 
-    <link
-        rel="stylesheet"
-        href="css/header-footer.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="css/meus-pedidos.css"
-    >
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/compra.css">
 
 </head>
 

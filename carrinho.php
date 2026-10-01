@@ -194,15 +194,9 @@ foreach ($itens as $item) {
 
     <title>Carrinho | Futuroteca</title>
 
-    <link
-        rel="stylesheet"
-        href="css/header-footer.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="css/carrinho.css"
-    >
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/compra.css">
+    <link rel="stylesheet" href="css/carrinho.css">
 
 </head>
 
