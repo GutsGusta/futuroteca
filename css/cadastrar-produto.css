@@ -1,0 +1,434 @@
+.conteudo {
+    min-height: 100vh;
+}
+
+
+/* ========================================
+   CABEÇALHO DA PÁGINA
+======================================== */
+
+.cabecalho-pagina {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 28px;
+}
+
+
+.cabecalho-pagina h1 {
+    margin: 0 0 7px;
+
+    color: #29263a;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+.cabecalho-pagina p {
+    margin: 0;
+
+    color: #777384;
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   BOTÃO VOLTAR
+======================================== */
+
+.btn-voltar {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    background: #ffffff;
+
+    color: #60408c;
+
+    border: 1px solid #ded8e8;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.btn-voltar:hover {
+    background: #f5f1fb;
+
+    border-color: #cfc3df;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   FORMULÁRIO
+======================================== */
+
+.form-produto {
+    width: 100%;
+    max-width: 950px;
+
+    box-sizing: border-box;
+
+    padding: 35px;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeF4;
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 30px rgba(75, 75, 115, 0.07);
+}
+
+
+/* ========================================
+   CAMPOS
+======================================== */
+
+.campo {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 22px;
+}
+
+
+.campo label {
+    color: #3d3949;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.campo input,
+.campo select,
+.campo textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    background: #faf9fc;
+
+    color: #353141;
+
+    border: 1px solid #ddd8e6;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #aaa6b2;
+}
+
+
+/* ========================================
+   FOCO DOS CAMPOS
+======================================== */
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    background: #ffffff;
+
+    border-color: #8c62bd;
+
+    box-shadow: 0 0 0 3px rgba(112, 64, 181, 0.10);
+}
+
+
+/* ========================================
+   SELECT
+======================================== */
+
+.campo select {
+    cursor: pointer;
+}
+
+
+.campo select option {
+    color: #353141;
+}
+
+
+/* ========================================
+   TEXTAREA
+======================================== */
+
+.campo textarea {
+    min-height: 130px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   CAMPOS LADO A LADO
+======================================== */
+
+.linha-form {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+.linha-form .campo {
+    min-width: 0;
+}
+
+
+/* Preço, preço promocional e estoque */
+
+.linha-form:has(#preco) {
+    grid-template-columns: 1fr 1fr 0.8fr;
+}
+
+
+/* ========================================
+   UPLOAD DE IMAGEM
+======================================== */
+
+.campo input[type="file"] {
+    padding: 9px;
+
+    background: #f8f7fa;
+
+    cursor: pointer;
+}
+
+
+.campo input[type="file"]::file-selector-button {
+    margin-right: 12px;
+
+    padding: 8px 13px;
+
+    background: #eee8f7;
+
+    color: #60408c;
+
+    border: none;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+
+.campo input[type="file"]::file-selector-button:hover {
+    background: #e2d8f0;
+}
+
+
+/* ========================================
+   AÇÕES DO FORMULÁRIO
+======================================== */
+
+.acoes-form {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #eeeeF4;
+}
+
+
+/* ========================================
+   BOTÃO CANCELAR
+======================================== */
+
+.btn-cancelar {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 20px;
+
+    background: #f4f2f6;
+
+    color: #686575;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.btn-cancelar:hover {
+    background: #e9e6ed;
+
+    color: #494653;
+}
+
+
+/* ========================================
+   BOTÃO SALVAR / CADASTRAR
+======================================== */
+
+.btn-salvar {
+    padding: 12px 22px;
+
+    background: #7040b5;
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.btn-salvar:hover {
+    background: #593096;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 14px rgba(112, 64, 181, 0.20);
+}
+
+
+.btn-salvar:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 900px) {
+
+    .form-produto {
+        max-width: 100%;
+
+        padding: 28px;
+    }
+
+    .linha-form,
+    .linha-form:has(#preco) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .cabecalho-pagina {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .cabecalho-pagina h1 {
+        font-size: 26px;
+    }
+
+    .form-produto {
+        padding: 22px;
+
+        border-radius: 14px;
+    }
+
+    .linha-form,
+    .linha-form:has(#preco) {
+        grid-template-columns: 1fr;
+    }
+
+    .acoes-form {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .btn-cancelar,
+    .btn-salvar {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        text-align: center;
+    }
+
+}

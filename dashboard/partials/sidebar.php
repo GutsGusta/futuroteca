@@ -48,7 +48,7 @@
 
     <div class="sidebar-site">
 
-        <a href="../homepage.php" class="btn-site">
+        <a href="../index.php" class="btn-site">
             Ir para o Site
         </a>
 

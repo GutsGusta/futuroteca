@@ -1,0 +1,479 @@
+
+.emprestimos-page {
+    min-height: calc(100vh - 100px);
+    padding: 45px 30px;
+    background: #f7f6fa;
+}
+
+
+/* ========================================
+   CONTAINER PRINCIPAL
+======================================== */
+
+.emprestimos-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    padding: 35px 40px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 8px 30px rgba(75, 75, 115, 0.08);
+}
+
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
+.emprestimos-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid #eeeeF4;
+}
+
+
+.emprestimos-tag {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    padding: 6px 12px;
+
+    background: #f0e8ff;
+    color: #7040b5;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+}
+
+
+.emprestimos-cabecalho h1 {
+    margin: 0 0 7px;
+
+    color: #29263a;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+.emprestimos-cabecalho p {
+    margin: 0;
+
+    color: #777384;
+
+    font-size: 15px;
+}
+
+
+/* ========================================
+   TABELA
+======================================== */
+
+.emprestimos-tabela-container {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid #eeeeF4;
+
+    border-radius: 14px;
+}
+
+
+.tabela-emprestimos {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 850px;
+}
+
+
+/* ========================================
+   CABEÇALHO DA TABELA
+======================================== */
+
+.tabela-emprestimos thead {
+    background: #f5f1fb;
+}
+
+
+.tabela-emprestimos th {
+    padding: 16px 18px;
+
+    text-align: left;
+
+    color: #60408c;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   LINHAS
+======================================== */
+
+.tabela-emprestimos td {
+    padding: 18px;
+
+    border-top: 1px solid #eeeeF4;
+
+    color: #4c4858;
+
+    font-size: 14px;
+
+    vertical-align: middle;
+}
+
+
+.tabela-emprestimos tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+
+.tabela-emprestimos tbody tr:hover {
+    background: #faf8fd;
+}
+
+
+/* ========================================
+   INFORMAÇÕES DO LIVRO
+======================================== */
+
+.coluna-livro {
+    min-width: 200px;
+}
+
+
+.coluna-livro strong {
+    display: block;
+
+    color: #302c3d;
+
+    font-size: 15px;
+
+    line-height: 1.4;
+}
+
+
+.coluna-autor {
+    color: #777384 !important;
+
+    min-width: 150px;
+}
+
+
+/* ========================================
+   DATA DE DEVOLUÇÃO
+======================================== */
+
+.coluna-devolucao {
+    font-weight: 600;
+
+    color: #60408c !important;
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.status-emprestimo {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* ATIVO */
+
+.status-ativo {
+    background: #e7f7ed;
+
+    color: #27804a;
+}
+
+
+/* ATRASADO */
+
+.status-atrasado {
+    background: #fff0df;
+
+    color: #c46a17;
+}
+
+
+/* DEVOLVIDO */
+
+.status-devolvido {
+    background: #eeeeF3;
+
+    color: #686575;
+}
+
+
+/* ========================================
+   AÇÃO
+======================================== */
+
+.coluna-acao {
+    min-width: 150px;
+}
+
+
+.coluna-acao form {
+    margin: 0;
+}
+
+
+.btn-prorrogar {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 9px 13px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #7040b5;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.btn-prorrogar:hover {
+    background: #593096;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 4px 10px rgba(112, 64, 181, 0.2);
+}
+
+
+.btn-prorrogar .material-symbols-outlined {
+    font-size: 17px;
+}
+
+
+.emprestimo-prorrogado {
+    display: inline-block;
+
+    padding: 7px 11px;
+
+    background: #f3f1f6;
+
+    color: #777384;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.acao-indisponivel {
+    color: #aaa6b2;
+
+    font-size: 18px;
+}
+
+
+/* ========================================
+   CARRINHO VAZIO
+======================================== */
+
+.emprestimos-vazio {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    min-height: 350px;
+
+    padding: 40px 20px;
+}
+
+
+.icone-vazio {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 70px;
+    height: 70px;
+
+    margin-bottom: 18px;
+
+    background: #f0e8ff;
+
+    color: #7040b5;
+
+    border-radius: 50%;
+}
+
+
+.icone-vazio .material-symbols-outlined {
+    font-size: 34px;
+}
+
+
+.emprestimos-vazio h2 {
+    margin: 0 0 8px;
+
+    color: #302c3d;
+
+    font-size: 21px;
+}
+
+
+.emprestimos-vazio p {
+    margin: 0 0 22px;
+
+    color: #777384;
+
+    font-size: 14px;
+}
+
+
+.btn-ver-livros {
+    display: inline-block;
+
+    padding: 11px 22px;
+
+    background: #7040b5;
+
+    color: #ffffff;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.btn-ver-livros:hover {
+    background: #593096;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 900px) {
+
+    .emprestimos-page {
+        padding: 30px 15px;
+    }
+
+    .emprestimos-container {
+        width: 100%;
+
+        padding: 25px 20px;
+    }
+
+    .emprestimos-cabecalho h1 {
+        font-size: 26px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .emprestimos-container {
+        padding: 22px 15px;
+
+        border-radius: 15px;
+    }
+
+    .emprestimos-cabecalho {
+        margin-bottom: 22px;
+
+        padding-bottom: 20px;
+    }
+
+    .emprestimos-cabecalho h1 {
+        font-size: 23px;
+    }
+
+    .emprestimos-cabecalho p {
+        font-size: 13px;
+    }
+
+    .emprestimos-tabela-container {
+        border-radius: 10px;
+    }
+
+}

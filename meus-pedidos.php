@@ -45,6 +45,7 @@ $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/compra.css">
+    <link rel="stylesheet" href="css/meus-pedidos.css">
 
 </head>
 

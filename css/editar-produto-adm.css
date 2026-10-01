@@ -1,0 +1,469 @@
+
+
+.cabecalho-pagina {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 28px;
+}
+
+.cabecalho-pagina h1 {
+    margin: 0 0 7px;
+
+    color: #292438;
+
+    font-size: 30px;
+
+    font-weight: 800;
+}
+
+.cabecalho-pagina p {
+    margin: 0;
+
+    color: #817c8b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   BOTÃO VOLTAR
+========================================= */
+
+.btn-voltar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 40px;
+
+    padding: 0 17px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd7e8;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #686274;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.btn-voltar:hover {
+    background: #f7f4fb;
+
+    border-color: #cfc5df;
+
+    color: #6247aa;
+
+    transform: translateX(-2px);
+}
+
+
+/* =========================================
+   FORMULÁRIO
+========================================= */
+
+.form-produto {
+    width: 100%;
+
+    max-width: 1050px;
+
+    box-sizing: border-box;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border: 1px solid #ebe7f1;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(58, 44, 84, 0.06);
+}
+
+
+/* =========================================
+   CAMPOS
+========================================= */
+
+.campo {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+}
+
+.campo label {
+    color: #4a4553;
+
+    font-size: 12px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================
+   INPUTS E SELECTS
+========================================= */
+
+.campo input,
+.campo select,
+.campo textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ded9e7;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #403a49;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* INPUTS */
+
+.campo input,
+.campo select {
+    height: 44px;
+
+    padding: 0 13px;
+}
+
+
+/* TEXTAREA */
+
+.campo textarea {
+    min-height: 125px;
+
+    padding: 13px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+/* PLACEHOLDER */
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #aaa5b2;
+}
+
+
+/* FOCO */
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    border-color: #8062c5;
+
+    box-shadow:
+        0 0 0 3px rgba(98, 71, 170, 0.09);
+
+    background: #fefeff;
+}
+
+
+/* =========================================
+   LINHAS DO FORMULÁRIO
+========================================= */
+
+.linha-form {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.linha-form:nth-of-type(2) {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+/* =========================================
+   IMAGEM ATUAL
+========================================= */
+
+.campo img {
+    display: block;
+
+    width: 110px !important;
+
+    height: 150px;
+
+    margin: 3px 0 7px;
+
+    object-fit: cover;
+
+    border: 1px solid #e4dfeb;
+
+    border-radius: 10px;
+
+    background: #f8f6fb;
+
+    box-shadow:
+        0 4px 12px rgba(58, 44, 84, 0.08);
+}
+
+
+/* =========================================
+   INPUT DE ARQUIVO
+========================================= */
+
+.campo input[type="file"] {
+    height: auto;
+
+    padding: 10px;
+
+    background: #faf9fc;
+
+    cursor: pointer;
+}
+
+.campo input[type="file"]:hover {
+    border-color: #cfc3e0;
+
+    background: #f8f5fc;
+}
+
+
+/* =========================================
+   SEPARAÇÃO DA ÁREA DE IMAGEM
+========================================= */
+
+.campo:has(input[type="file"]) {
+    padding-top: 5px;
+
+    border-top: 1px solid #eeeaf3;
+}
+
+
+/* =========================================
+   ÁREA DOS BOTÕES
+========================================= */
+
+.acoes-form {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 28px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #eeeaf3;
+}
+
+
+/* =========================================
+   BOTÃO CANCELAR
+========================================= */
+
+.btn-cancelar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 0 20px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd7e8;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #686274;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.btn-cancelar:hover {
+    background: #f7f4fb;
+
+    border-color: #cfc5df;
+
+    color: #514b5b;
+}
+
+
+/* =========================================
+   BOTÃO SALVAR
+========================================= */
+
+.btn-salvar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 0 22px;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #6247aa;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-salvar:hover {
+    background: #513795;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 13px rgba(98, 71, 170, 0.2);
+}
+
+.btn-salvar:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   CAMPOS NUMÉRICOS
+========================================= */
+
+#preco,
+#preco_promocional,
+#estoque {
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================
+   SELECT
+========================================= */
+
+.campo select {
+    cursor: pointer;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .form-produto {
+        max-width: 100%;
+
+        padding: 25px;
+    }
+
+    .linha-form,
+    .linha-form:nth-of-type(2) {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 600px) {
+
+    .cabecalho-pagina {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .cabecalho-pagina h1 {
+        font-size: 25px;
+    }
+
+    .btn-voltar {
+        width: 100%;
+    }
+
+    .form-produto {
+        padding: 20px;
+
+        border-radius: 14px;
+    }
+
+    .acoes-form {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .btn-cancelar,
+    .btn-salvar {
+        width: 100%;
+    }
+
+}
