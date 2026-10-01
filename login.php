@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/header-footer.css">
+    <link rel="icon" type="x-icon" href="./uploads/logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>

@@ -167,7 +167,7 @@ foreach ($itens as $item) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Carrinho | Futuroteca</title>
-
+    <link rel="icon" type="x-icon" href="./uploads/logo.png">
     <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/compra.css">
     <link rel="stylesheet" href="css/carrinho.css">

@@ -73,7 +73,7 @@ $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
-
+    <link rel="icon" type="x-icon" href="./uploads/logo.png">
     <title>
         Pedido #<?= $pedido["id_pedido"] ?> | Futuroteca
     </title>
