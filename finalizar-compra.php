@@ -208,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $pdo->commit();
 
-        header("Location: homepage.php");
+        header("Location: index.php");
         exit;
 
     } catch (Exception $e) {
