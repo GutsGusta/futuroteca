@@ -1,6 +1,4 @@
-/* =========================
-   PÁGINA
-========================= */
+/* PÁGINA */
 
 * {
   box-sizing: border-box;
@@ -13,9 +11,7 @@ body {
 }
 
 
-/* =========================
-   CATÁLOGO
-========================= */
+/* CATÁLOGO */
 
 .catalogo {
   display: flex;
@@ -29,9 +25,7 @@ body {
 }
 
 
-/* =========================
-   SIDEBAR
-========================= */
+/* BARRA DO LADO */
 
 .barra-lateral {
   width: 250px;
@@ -81,9 +75,7 @@ body {
 }
 
 
-/* =========================
-   GRUPOS DE FILTRO
-========================= */
+/* GRUPO FILTRO */
 
 .grupo-filtro {
   padding: 18px 0;
@@ -160,9 +152,7 @@ body {
 }
 
 
-/* =========================
-   PRODUTOS
-========================= */
+/* PRODUTOS */
 
 .produtos-area {
   flex: 1;
@@ -203,9 +193,7 @@ body {
 }
 
 
-/* =========================
-   GRID DOS PRODUTOS
-========================= */
+/* GRID DOS NGC DOS PRODUTO */
 
 .card-container {
   display: grid;
@@ -223,9 +211,7 @@ body {
 }
 
 
-/* =========================
-   CARD
-========================= */
+/* CARD DO PRODUTO */
 
 .card {
   display: flex;
@@ -325,9 +311,7 @@ body {
 }
 
 
-/* =========================
-   SEM RESULTADOS
-========================= */
+/* QUANDO NAO TEM RESULRADO */
 
 .sem-produtos {
   grid-column: 1 / -1;
@@ -362,9 +346,7 @@ body {
 }
 
 
-/* =========================
-   RESPONSIVO
-========================= */
+/* BAGUI PRA DEIXAR REPSONSIVO */
 
 @media (max-width: 850px) {
 

@@ -1,16 +1,10 @@
-/* =========================
-   HEADER
-========================= */
-
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* =========================
-   HEADER
-========================= */
+
 
 .site-header {
     width: 100%;
@@ -36,7 +30,7 @@ body {
 }
 
 .logo-header img {
-    width: 125px;
+    width: 85px;
     height: auto;
     display: block;
 }
@@ -173,9 +167,7 @@ body {
     color: #7040b5;
 }
 
-/* =========================
-   NAVEGAÇÃO
-========================= */
+   /* NAVEGAÇÃO */
 
 .header-nav {
     min-height: 50px;
@@ -240,7 +232,7 @@ body {
     color: #7040b5;
 }
 
-/* LINHA AO PASSAR O MOUSE */
+/* LINHA PASSAR O MOUSE */
 
 .nav-bar a::after {
     content: "";
