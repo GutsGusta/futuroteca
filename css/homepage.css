@@ -616,3 +616,53 @@ main {
     flex: 0 0 calc((100% - 72px) / 5);
     box-sizing: border-box;
 }
+
+.mais-vendidos-lista {
+    display: flex;
+    gap: 20px;
+
+    overflow-x: hidden;
+
+    scroll-behavior: smooth;
+}
+
+.mais-vendidos-item {
+    flex: 0 0 calc(20% - 16px);
+
+    min-width: calc(20% - 16px);
+}
+
+
+/* PASSADORES */
+
+.mais-vendidos-passador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.mais-vendidos-seta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background-color: #4b4b73;
+    color: white;
+
+    transition: 0.2s;
+}
+
+.mais-vendidos-seta:hover {
+    transform: scale(1.08);
+}

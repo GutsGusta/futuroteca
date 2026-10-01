@@ -53,7 +53,7 @@ $sqlPromocoes = "SELECT *
                  WHERE preco_promocional IS NOT NULL
                  AND preco_promocional < preco
                  ORDER BY id_produto DESC
-                 LIMIT 5";
+                 LIMIT 15";
 
 $stmtPromocoes = $pdo->prepare($sqlPromocoes);
 $stmtPromocoes->execute();
@@ -351,7 +351,8 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="precos-promocao">
 
                                     <span class="preco-antigo">
-                                        R$ <?= number_format(
+                                        R$
+                                        <?= number_format(
                                             $produto['preco'],
                                             2,
                                             ',',
@@ -360,7 +361,8 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
                                     </span>
 
                                     <span class="preco-promocional">
-                                        R$ <?= number_format(
+                                        R$
+                                        <?= number_format(
                                             $produto['preco_promocional'],
                                             2,
                                             ',',
@@ -381,6 +383,22 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
                     <p>Nenhum produto em promoção.</p>
 
                 <?php endif; ?>
+
+            </div>
+
+            <div class="mais-vendidos-passador">
+
+                <button type="button" class="mais-vendidos-seta" id="promocoes-anterior">
+                    <span class="material-symbols-outlined">
+                        chevron_left
+                    </span>
+                </button>
+
+                <button type="button" class="mais-vendidos-seta" id="promocoes-proximo">
+                    <span class="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                </button>
 
             </div>
 
@@ -426,14 +444,48 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
                                     <?= htmlspecialchars($ebook['categoria']) ?>
                                 </p>
 
-                                <h5 class="mais-vendidos-preco">
-                                    R$ <?= number_format(
-                                        $ebook['preco'],
-                                        2,
-                                        ',',
-                                        '.'
-                                    ) ?>
-                                </h5>
+                                <?php if (
+                                    !empty($ebook['preco_promocional']) &&
+                                    $ebook['preco_promocional'] < $ebook['preco']
+                                ): ?>
+
+                                    <div class="precos-promocao">
+
+                                        <span class="preco-antigo">
+                                            R$
+                                            <?= number_format(
+                                                $ebook['preco'],
+                                                2,
+                                                ',',
+                                                '.'
+                                            ) ?>
+                                        </span>
+
+                                        <span class="preco-promocional">
+                                            R$
+                                            <?= number_format(
+                                                $ebook['preco_promocional'],
+                                                2,
+                                                ',',
+                                                '.'
+                                            ) ?>
+                                        </span>
+
+                                    </div>
+
+                                <?php else: ?>
+
+                                    <h5 class="mais-vendidos-preco">
+                                        R$
+                                        <?= number_format(
+                                            $ebook['preco'],
+                                            2,
+                                            ',',
+                                            '.'
+                                        ) ?>
+                                    </h5>
+
+                                <?php endif; ?>
 
                             </div>
 
@@ -455,34 +507,58 @@ $ebooks = $stmtEbooks->fetchAll(PDO::FETCH_ASSOC);
     <?php include "partials/footer.php"; ?>
     <script>
 
-        const listaMaisVendidos =
-            document.querySelector("#mais-vendidos .mais-vendidos-lista");
+        function configurarCarrossel(idSecao, idAnterior, idProximo) {
 
-        const botaoAnterior =
-            document.getElementById("mais-vendidos-anterior");
+            const secao = document.getElementById(idSecao);
 
-        const botaoProximo =
-            document.getElementById("mais-vendidos-proximo");
+            const lista = secao.querySelector(".mais-vendidos-lista");
+
+            const botaoAnterior = document.getElementById(idAnterior);
+
+            const botaoProximo = document.getElementById(idProximo);
 
 
-        botaoProximo.addEventListener("click", function () {
+            botaoProximo.addEventListener("click", function () {
 
-            listaMaisVendidos.scrollBy({
-                left: listaMaisVendidos.clientWidth,
-                behavior: "smooth"
+                lista.scrollBy({
+                    left: lista.clientWidth,
+                    behavior: "smooth"
+                });
+
             });
 
-        });
 
+            botaoAnterior.addEventListener("click", function () {
 
-        botaoAnterior.addEventListener("click", function () {
+                lista.scrollBy({
+                    left: -lista.clientWidth,
+                    behavior: "smooth"
+                });
 
-            listaMaisVendidos.scrollBy({
-                left: -listaMaisVendidos.clientWidth,
-                behavior: "smooth"
             });
 
-        });
+        }
+
+
+        configurarCarrossel(
+            "mais-vendidos",
+            "mais-vendidos-anterior",
+            "mais-vendidos-proximo"
+        );
+
+
+        configurarCarrossel(
+            "promocoes",
+            "promocoes-anterior",
+            "promocoes-proximo"
+        );
+
+
+        configurarCarrossel(
+            "ebooks",
+            "ebooks-anterior",
+            "ebooks-proximo"
+        );
 
     </script>
 </body>
