@@ -45,6 +45,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Produtos | Futuroteca</title>
 
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/produtos-adm.css">
 </head>
 
 <body>

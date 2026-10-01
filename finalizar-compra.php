@@ -239,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php require_once "partials/header.php"; ?>
 
-    <main class="detalhes-container">
+    <main>
 
         <div class="finalizar-container">
 

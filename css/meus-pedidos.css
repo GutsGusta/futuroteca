@@ -1,0 +1,583 @@
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+============================== */
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background: #f7f6fa;
+
+    color: #302b3d;
+
+    font-family: "Exo 2", sans-serif;
+}
+
+
+/* ==============================
+   PÁGINA
+============================== */
+
+.pagina-pedidos {
+    width: 100%;
+
+    min-height: calc(100vh - 100px);
+
+    padding: 55px 0;
+
+    box-sizing: border-box;
+}
+
+
+/* ==============================
+   CONTAINER PRINCIPAL
+============================== */
+
+.pedidos-container {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 40px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #ebe7f2;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 40px rgba(75, 75, 115, 0.08);
+}
+
+
+/* ==============================
+   CABEÇALHO
+============================== */
+
+.pedidos-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid #eeeaf3;
+}
+
+.pedidos-label {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color: #6247aa;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.pedidos-header h1 {
+    margin: 0 0 7px;
+
+    color: #292438;
+
+    font-family: "Audiowide", sans-serif;
+
+    font-size: 30px;
+}
+
+.pedidos-header p {
+    margin: 0;
+
+    color: #817c8b;
+
+    font-size: 14px;
+}
+
+
+/* CONTADOR */
+
+.quantidade-pedidos {
+    padding: 8px 13px;
+
+    background: #f2eef9;
+
+    border-radius: 20px;
+
+    color: #6247aa;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* ==============================
+   TABELA
+============================== */
+
+.tabela-pedidos-container {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.tabela-pedidos {
+    width: 100%;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    border: 1px solid #eeeaf3;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+}
+
+
+/* ==============================
+   CABEÇALHO DA TABELA
+============================== */
+
+.tabela-pedidos th {
+    padding: 16px 18px;
+
+    background: #f6f3fa;
+
+    border-bottom: 1px solid #e9e5ef;
+
+    color: #686274;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+.tabela-pedidos th:first-child {
+    border-top-left-radius: 16px;
+}
+
+.tabela-pedidos th:last-child {
+    border-top-right-radius: 16px;
+}
+
+
+/* ==============================
+   CÉLULAS
+============================== */
+
+.tabela-pedidos td {
+    padding: 19px 18px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #f0edf4;
+
+    color: #514c5c;
+
+    font-size: 14px;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+}
+
+.tabela-pedidos tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-pedidos tbody tr {
+    transition: 0.2s ease;
+}
+
+.tabela-pedidos tbody tr:hover td {
+    background: #fbfaff;
+}
+
+
+/* ==============================
+   NÚMERO DO PEDIDO
+============================== */
+
+.pedido-id {
+    color: #6247aa !important;
+
+    font-size: 14px !important;
+
+    font-weight: 800;
+}
+
+
+/* ==============================
+   DATA
+============================== */
+
+.pedido-data {
+    color: #777181 !important;
+
+    font-size: 13px !important;
+}
+
+
+/* ==============================
+   TOTAL
+============================== */
+
+.pedido-total {
+    color: #6247aa !important;
+
+    font-size: 15px !important;
+
+    font-weight: 800;
+}
+
+
+/* ==============================
+   ENTREGA
+============================== */
+
+.tipo-entrega {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    background: #f4f1f8;
+
+    border-radius: 7px;
+
+    color: #5e5968;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* ==============================
+   FRETE
+============================== */
+
+.pedido-frete {
+    font-weight: 600;
+}
+
+.frete-gratis {
+    color: #39704b;
+
+    font-weight: 700;
+}
+
+
+/* ==============================
+   STATUS
+============================== */
+
+.status-pedido {
+    display: inline-block;
+
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* STATUS PENDENTE */
+
+.status-pendente {
+    background: #fff6dc;
+
+    color: #98721e;
+}
+
+
+/* STATUS APROVADO */
+
+.status-aprovado {
+    background: #eaf7ef;
+
+    color: #39704b;
+}
+
+
+/* STATUS CONCLUÍDO */
+
+.status-concluido {
+    background: #eaf7ef;
+
+    color: #39704b;
+}
+
+
+/* STATUS CANCELADO */
+
+.status-cancelado {
+    background: #fff0f0;
+
+    color: #b34b4b;
+}
+
+
+/* STATUS REJEITADO */
+
+.status-rejeitado {
+    background: #fff0f0;
+
+    color: #b34b4b;
+}
+
+
+/* STATUS EM ANDAMENTO */
+
+.status-em-andamento {
+    background: #f0ebfa;
+
+    color: #6247aa;
+}
+
+
+/* ==============================
+   BOTÃO DETALHES
+============================== */
+
+.btn-detalhes {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 13px;
+
+    background: #f1ecf9;
+
+    border: 1px solid #e3dbf0;
+
+    border-radius: 8px;
+
+    color: #6247aa;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.btn-detalhes:hover {
+    background: #6247aa;
+
+    border-color: #6247aa;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==============================
+   CONTINUAR COMPRANDO
+============================== */
+
+.continuar-comprando {
+    display: inline-block;
+
+    margin-top: 22px;
+
+    color: #6247aa;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.continuar-comprando:hover {
+    color: #422c7d;
+
+    transform: translateX(-2px);
+}
+
+
+/* ==============================
+   PEDIDOS VAZIOS
+============================== */
+
+.pedidos-vazio {
+    padding: 75px 20px;
+
+    text-align: center;
+}
+
+.icone-pedidos {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    background: #f1ecf9;
+
+    border-radius: 50%;
+
+    color: #6247aa;
+
+    font-size: 0;
+}
+
+.icone-pedidos::before {
+    content: "🛍";
+
+    font-size: 27px;
+}
+
+.pedidos-vazio h2 {
+    margin: 0 0 8px;
+
+    color: #342e43;
+
+    font-size: 22px;
+}
+
+.pedidos-vazio p {
+    max-width: 450px;
+
+    margin: 0 auto 25px;
+
+    color: #817c8b;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ==============================
+   BOTÃO PRODUTOS
+============================== */
+
+.btn-ver-produtos {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 22px;
+
+    background: #6247aa;
+
+    border-radius: 9px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.btn-ver-produtos:hover {
+    background: #503793;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+
+@media (max-width: 900px) {
+
+    .pagina-pedidos {
+        padding: 35px 0;
+    }
+
+    .pedidos-container {
+        width: 92%;
+
+        padding: 25px;
+    }
+
+    .pedidos-header h1 {
+        font-size: 26px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .pedidos-container {
+        width: 94%;
+
+        padding: 18px;
+
+        border-radius: 18px;
+    }
+
+    .pedidos-header {
+        flex-direction: column;
+    }
+
+    .quantidade-pedidos {
+        align-self: flex-start;
+    }
+
+    .tabela-pedidos {
+        min-width: 900px;
+    }
+
+    .tabela-pedidos-container {
+        border-radius: 12px;
+    }
+
+    .pedidos-vazio {
+        padding: 55px 15px;
+    }
+
+}

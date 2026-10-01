@@ -56,6 +56,7 @@ $emprestimos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Empréstimos | Futuroteca</title>
 
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/emprestimos-adm.css">
 </head>
 
 <body>

@@ -1,0 +1,531 @@
+.titulo-dashboard {
+    margin-bottom: 28px;
+}
+
+.titulo-dashboard h1 {
+    margin: 0 0 7px;
+
+    color: #292438;
+
+    font-size: 30px;
+
+    font-weight: 800;
+}
+
+.titulo-dashboard p {
+    margin: 0;
+
+    color: #817c8b;
+
+    font-size: 14px;
+}
+
+
+/* FILTROS AGR VAI */
+
+.filtros-produtos {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+    margin-bottom: 25px;
+}
+
+.filtros-produtos input,
+.filtros-produtos select {
+    height: 44px;
+
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #e2ddea;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #40394c;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.filtros-produtos input {
+    width: 320px;
+}
+
+.filtros-produtos select {
+    width: 190px;
+
+    cursor: pointer;
+}
+
+.filtros-produtos input::placeholder {
+    color: #aaa5b2;
+}
+
+.filtros-produtos input:focus,
+.filtros-produtos select:focus {
+    border-color: #8062c5;
+
+    box-shadow:
+        0 0 0 3px rgba(98, 71, 170, 0.09);
+}
+
+
+/* FILTRAR */
+
+.btn-filtrar {
+    height: 44px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #6247aa;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-filtrar:hover {
+    background: #513795;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(98, 71, 170, 0.15);
+}
+
+
+/* LIMPAR */
+
+.btn-limpar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: 44px;
+
+    padding: 0 17px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd7e8;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #686274;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.btn-limpar:hover {
+    background: #f7f4fb;
+
+    border-color: #cfc5df;
+
+    color: #6247aa;
+}
+
+/* PAINEL */
+
+.painel-dashboard {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #ebe7f1;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(58, 44, 84, 0.06);
+
+    overflow: hidden;
+}
+
+
+/* TITULO */
+
+.painel-titulo {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 21px 23px;
+
+    border-bottom: 1px solid #eeeaf3;
+}
+
+.painel-titulo h3 {
+    margin: 0;
+
+    color: #393344;
+
+    font-size: 16px;
+
+    font-weight: 750;
+}
+
+.painel-titulo a {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 36px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border-radius: 9px;
+
+    background: #6247aa;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.painel-titulo a:hover {
+    background: #513795;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(98, 71, 170, 0.18);
+}
+
+
+/* TABELA */
+.painel-dashboard table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+}
+
+/* CABEÇALHO */
+
+.painel-dashboard thead th {
+    padding: 15px 17px;
+
+    background: #f8f6fb;
+
+    border-bottom: 1px solid #ebe7f1;
+
+    color: #777180;
+
+    font-size: 10px;
+
+    font-weight: 750;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+
+/* CÉLULAS */
+
+.painel-dashboard tbody td {
+    padding: 17px;
+
+    border-bottom: 1px solid #f0edf4;
+
+    color: #5d5865;
+
+    vertical-align: middle;
+}
+
+.painel-dashboard tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.painel-dashboard tbody tr {
+    transition: 0.18s ease;
+}
+
+.painel-dashboard tbody tr:hover td {
+    background: #fbfaff;
+}
+
+
+/* CLIENTE */
+
+.painel-dashboard tbody td:first-child {
+    color: #393344;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+/* PRODUTOS */
+
+.painel-dashboard tbody td:nth-child(2) {
+    max-width: 260px;
+
+    color: #5d5865;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+/* DATAS */
+
+.painel-dashboard tbody td:nth-child(3),
+.painel-dashboard tbody td:nth-child(4),
+.painel-dashboard tbody td:nth-child(5) {
+    color: #706a78;
+
+    white-space: nowrap;
+}
+
+/* STATUS */
+
+.painel-dashboard tbody td:nth-child(6) {
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+/* ATIVO */
+
+.painel-dashboard tbody tr:has(td:nth-child(6)) td:nth-child(6) {
+    color: #6247aa;
+}
+
+
+
+/* AÇÕES */
+
+.painel-dashboard tbody td:last-child {
+    white-space: nowrap;
+}
+
+/* PRORROGAR */
+
+.painel-dashboard tbody td:last-child a:first-child {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 31px;
+
+    padding: 0 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd4ef;
+
+    border-radius: 8px;
+
+    background: #f5f1fb;
+
+    color: #6247aa;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.painel-dashboard tbody td:last-child a:first-child:hover {
+    background: #eae3f6;
+
+    border-color: #cfc2e3;
+
+    transform: translateY(-1px);
+}
+
+
+/* PRA DEVOLVER */
+
+.painel-dashboard tbody td:last-child a:last-child {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 31px;
+
+    padding: 0 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cfe4d5;
+
+    border-radius: 8px;
+
+    background: #f0faf3;
+
+    color: #31804a;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.painel-dashboard tbody td:last-child a:last-child:hover {
+    background: #e2f4e7;
+
+    border-color: #b9d9c1;
+
+    transform: translateY(-1px);
+}
+
+
+.painel-dashboard tbody td:last-child {
+    color: #d3cedb;
+}
+
+.painel-dashboard tbody td:last-child a + a {
+    margin-left: 5px;
+}
+
+
+/* EMPRÉSTIMO NNEHUM ALOU TESTA */
+
+.painel-dashboard tbody td[colspan] {
+    padding: 55px 20px;
+
+    color: #96909f;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1200px) {
+
+    .painel-dashboard {
+        overflow-x: auto;
+    }
+
+    .painel-dashboard table {
+        min-width: 1050px;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .filtros-produtos {
+        flex-wrap: wrap;
+    }
+
+    .filtros-produtos input {
+        width: 100%;
+    }
+
+    .filtros-produtos select {
+        flex: 1;
+
+        min-width: 180px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .titulo-dashboard h1 {
+        font-size: 25px;
+    }
+
+    .filtros-produtos {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .filtros-produtos input,
+    .filtros-produtos select,
+    .btn-filtrar,
+    .btn-limpar {
+        width: 100%;
+    }
+
+    .painel-dashboard {
+        border-radius: 14px;
+    }
+
+    .painel-titulo {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+    .painel-titulo a {
+        width: 100%;
+    }
+
+}

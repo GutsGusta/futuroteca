@@ -16,13 +16,12 @@ $idPedido = isset($_GET["id"])
     : 0;
 
 
-/* BUSCA O PEDIDO
-   E CONFIRMA QUE ELE PERTENCE AO USUÁRIO LOGADO */
-
-$sql = "SELECT *
-        FROM pedido
-        WHERE id_pedido = ?
-        AND id_usuario = ?";
+$sql = "
+    SELECT *
+    FROM pedido
+    WHERE id_pedido = ?
+    AND id_usuario = ?
+";
 
 $stmt = $pdo->prepare($sql);
 
@@ -34,24 +33,25 @@ $stmt->execute([
 $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-/* SE O PEDIDO NÃO EXISTIR */
-
 if (!$pedido) {
     header("Location: meus-pedidos.php");
     exit;
 }
 
 
-/* BUSCA OS PRODUTOS DO PEDIDO */
+$sql = "
+    SELECT
+        item_pedido.*,
+        produto.titulo,
+        produto.autor,
+        produto.imagem
+    FROM item_pedido
 
-$sql = "SELECT
-            item_pedido.*,
-            produto.titulo,
-            produto.autor
-        FROM item_pedido
-        INNER JOIN produto
-            ON item_pedido.id_produto = produto.id_produto
-        WHERE item_pedido.id_pedido = ?";
+    INNER JOIN produto
+        ON item_pedido.id_produto = produto.id_produto
+
+    WHERE item_pedido.id_pedido = ?
+";
 
 $stmt = $pdo->prepare($sql);
 
@@ -85,179 +85,333 @@ $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <link
         rel="stylesheet"
-        href="css/compra.css"
+        href="css/detalhes-pedido.css"
     >
 
 </head>
+
 
 <body>
 
 <?php require_once "partials/header.php"; ?>
 
 
-<main class="detalhes-container">
+<main class="pagina-detalhes-pedido">
 
-    <div class="detalhes-info">
+    <div class="pedido-container">
 
-        <h1>
-            Pedido #<?= $pedido["id_pedido"] ?>
-        </h1>
+        <div class="pedido-header">
 
+            <div>
 
-        <p>
-            <strong>Data:</strong>
+                <span class="pedido-label">
+                    FUTUROTECA
+                </span>
 
-            <?= date(
-                "d/m/Y H:i",
-                strtotime($pedido["data_pedido"])
-            ) ?>
-        </p>
+                <h1>
+                    Pedido #<?= $pedido["id_pedido"] ?>
+                </h1>
 
+                <p>
+                    Confira as informações e os produtos
+                    deste pedido.
+                </p>
 
-        <p>
-            <strong>Status:</strong>
-
-            <?= htmlspecialchars($pedido["status"]) ?>
-        </p>
+            </div>
 
 
-        <p>
-            <strong>Tipo de entrega:</strong>
+            <span
+                class="status-pedido status-<?= strtolower(
+                    htmlspecialchars($pedido["status"])
+                ) ?>"
+            >
+                <?= htmlspecialchars($pedido["status"]) ?>
+            </span>
 
-            <?= htmlspecialchars($pedido["tipo_entrega"]) ?>
-        </p>
+        </div>
 
+        <div class="informacoes-pedido">
 
-        <p>
-            <strong>Frete:</strong>
+            <div class="informacao">
 
-            R$ <?= number_format(
-                $pedido["frete"],
-                2,
-                ",",
-                "."
-            ) ?>
-        </p>
+                <span class="informacao-label">
+                    Data do pedido
+                </span>
 
+                <strong>
 
-        <h2>Produtos</h2>
+                    <?= date(
+                        "d/m/Y H:i",
+                        strtotime($pedido["data_pedido"])
+                    ) ?>
 
+                </strong>
 
-        <?php if (count($itens) == 0): ?>
-
-            <p>
-                Nenhum produto encontrado neste pedido.
-            </p>
-
-        <?php else: ?>
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>Produto</th>
-
-                        <th>Autor</th>
-
-                        <th>Quantidade</th>
-
-                        <th>Preço unitário</th>
-
-                        <th>Subtotal</th>
-
-                    </tr>
-
-                </thead>
+            </div>
 
 
-                <tbody>
+            <div class="informacao">
 
-                    <?php foreach ($itens as $item): ?>
+                <span class="informacao-label">
+                    Tipo de entrega
+                </span>
 
-                        <?php
+                <strong>
 
-                        $subtotal =
-                            $item["quantidade"] *
-                            $item["preco_unitario"];
+                    <?= htmlspecialchars(
+                        $pedido["tipo_entrega"]
+                    ) ?>
 
-                        ?>
+                </strong>
 
-                        <tr>
-
-                            <td>
-                                <?= htmlspecialchars(
-                                    $item["titulo"]
-                                ) ?>
-                            </td>
+            </div>
 
 
-                            <td>
-                                <?= htmlspecialchars(
-                                    $item["autor"]
-                                ) ?>
-                            </td>
+            <div class="informacao">
+
+                <span class="informacao-label">
+                    Frete
+                </span>
+
+                <strong>
+
+                    <?php if ($pedido["frete"] > 0): ?>
+
+                        R$
+                        <?= number_format(
+                            $pedido["frete"],
+                            2,
+                            ",",
+                            "."
+                        ) ?>
+
+                    <?php else: ?>
+
+                        <span class="frete-gratis">
+                            Grátis
+                        </span>
+
+                    <?php endif; ?>
+
+                </strong>
+
+            </div>
 
 
-                            <td>
-                                <?= $item["quantidade"] ?>
-                            </td>
+            <div class="informacao">
+
+                <span class="informacao-label">
+                    Total do pedido
+                </span>
+
+                <strong class="valor-total">
+
+                    R$
+                    <?= number_format(
+                        $pedido["valor_total"],
+                        2,
+                        ",",
+                        "."
+                    ) ?>
+
+                </strong>
+
+            </div>
+
+        </div>
+
+        <div class="produtos-pedido">
+
+            <div class="secao-titulo">
+
+                <h2>
+                    Produtos
+                </h2>
+
+                <span>
+                    <?= count($itens) ?>
+                    <?= count($itens) == 1
+                        ? "produto"
+                        : "produtos"
+                    ?>
+                </span>
+
+            </div>
 
 
-                            <td>
+            <?php if (count($itens) == 0): ?>
 
-                                R$ <?= number_format(
-                                    $item["preco_unitario"],
-                                    2,
-                                    ",",
-                                    "."
-                                ) ?>
+                <div class="pedido-vazio">
 
-                            </td>
+                    <p>
+                        Nenhum produto encontrado neste pedido.
+                    </p>
 
+                </div>
 
-                            <td>
-
-                                R$ <?= number_format(
-                                    $subtotal,
-                                    2,
-                                    ",",
-                                    "."
-                                ) ?>
-
-                            </td>
-
-                        </tr>
-
-                    <?php endforeach; ?>
-
-                </tbody>
-
-            </table>
-
-        <?php endif; ?>
+            <?php else: ?>
 
 
-        <h2>
+                <div class="tabela-produtos-container">
 
-            Total:
-            R$ <?= number_format(
-                $pedido["valor_total"],
-                2,
-                ",",
-                "."
-            ) ?>
+                    <table class="tabela-produtos">
 
-        </h2>
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Produto
+                                </th>
+
+                                <th>
+                                    Autor
+                                </th>
+
+                                <th>
+                                    Quantidade
+                                </th>
+
+                                <th>
+                                    Preço unitário
+                                </th>
+
+                                <th>
+                                    Subtotal
+                                </th>
+
+                            </tr>
+
+                        </thead>
 
 
-        <br>
+                        <tbody>
+
+                            <?php foreach ($itens as $item): ?>
+
+                                <?php
+
+                                $subtotal =
+                                    $item["quantidade"] *
+                                    $item["preco_unitario"];
+
+                                ?>
 
 
-        <a href="meus-pedidos.php">
+                                <tr>
+
+                                    <td class="produto-info">
+
+                                        <div class="produto-imagem">
+
+                                            <img
+                                                src="<?= !empty($item["imagem"])
+                                                    ? 'uploads/' . htmlspecialchars($item["imagem"])
+                                                    : 'uploads/verity.png'
+                                                ?>"
+                                                alt="<?= htmlspecialchars(
+                                                    $item["titulo"]
+                                                ) ?>"
+                                            >
+
+                                        </div>
+
+
+                                        <strong>
+
+                                            <?= htmlspecialchars(
+                                                $item["titulo"]
+                                            ) ?>
+
+                                        </strong>
+
+                                    </td>
+
+                                    <td>
+
+                                        <?= htmlspecialchars(
+                                            $item["autor"]
+                                        ) ?>
+
+                                    </td>
+
+                                    <td>
+
+                                        <span class="quantidade">
+
+                                            <?= $item["quantidade"] ?>
+
+                                        </span>
+
+                                    </td>
+
+                                    <td class="preco">
+
+                                        R$
+
+                                        <?= number_format(
+                                            $item["preco_unitario"],
+                                            2,
+                                            ",",
+                                            "."
+                                        ) ?>
+
+                                    </td>
+
+                                    <td class="subtotal">
+
+                                        R$
+
+                                        <?= number_format(
+                                            $subtotal,
+                                            2,
+                                            ",",
+                                            "."
+                                        ) ?>
+
+                                    </td>
+
+                                </tr>
+
+
+                            <?php endforeach; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            <?php endif; ?>
+
+        </div>
+
+        <div class="resumo-pedido">
+
+            <span>
+                Total do pedido
+            </span>
+
+            <strong>
+
+                R$
+                <?= number_format(
+                    $pedido["valor_total"],
+                    2,
+                    ",",
+                    "."
+                ) ?>
+
+            </strong>
+
+        </div>
+
+        <a href="meus-pedidos.php"
+            class="voltar-pedidos">
             ← Voltar para meus pedidos
         </a>
+
 
     </div>
 

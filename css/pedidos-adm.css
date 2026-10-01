@@ -1,0 +1,473 @@
+.conteudo {
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+
+/* TITULO */
+
+.titulo-dashboard {
+    margin-bottom: 28px;
+}
+
+.titulo-dashboard h1 {
+    margin: 0 0 7px;
+
+    color: #292438;
+
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.titulo-dashboard p {
+    margin: 0;
+
+    color: #817c8b;
+
+    font-size: 14px;
+}
+
+
+/* FILTROS */
+
+.filtros-produtos {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+    margin-bottom: 25px;
+}
+
+.filtros-produtos input,
+.filtros-produtos select {
+    height: 44px;
+
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e2ddea;
+
+    border-radius: 10px;
+
+    color: #40394c;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.filtros-produtos input {
+    width: 280px;
+}
+
+.filtros-produtos select {
+    width: 190px;
+
+    cursor: pointer;
+}
+
+.filtros-produtos input::placeholder {
+    color: #aaa5b2;
+}
+
+.filtros-produtos input:focus,
+.filtros-produtos select:focus {
+    border-color: #8062c5;
+
+    box-shadow: 0 0 0 3px rgba(98, 71, 170, 0.09);
+}
+
+
+/* BOTAO DE FILTRAR */
+
+.btn-filtrar {
+    height: 44px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #6247aa;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-filtrar:hover {
+    background: #513795;
+
+    transform: translateY(-1px);
+}
+
+
+/* BOTAO DE LIMPAR */
+
+.btn-limpar {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 44px;
+
+    padding: 0 17px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd7e8;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #686274;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.btn-limpar:hover {
+    background: #f7f4fb;
+
+    border-color: #cfc5df;
+
+    color: #6247aa;
+}
+
+
+/* PAINEL */
+
+.painel-dashboard {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #ebe7f1;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(58, 44, 84, 0.06);
+
+    overflow: hidden;
+}
+
+
+.painel-titulo {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 22px 25px;
+
+    border-bottom: 1px solid #eeeaf3;
+}
+
+.painel-titulo h3 {
+    margin: 0;
+
+    color: #373141;
+
+    font-size: 17px;
+
+    font-weight: 750;
+}
+
+
+.painel-dashboard table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+}
+
+
+/* TABELA */
+
+.painel-dashboard thead th {
+    padding: 14px 16px;
+
+    background: #f8f6fb;
+
+    border-bottom: 1px solid #ebe7f1;
+
+    color: #777180;
+
+    font-size: 10px;
+
+    font-weight: 750;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+
+/* CÉLULAS */
+
+.painel-dashboard tbody td {
+    padding: 16px;
+
+    border-bottom: 1px solid #f0edf4;
+
+    color: #55505f;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+}
+
+.painel-dashboard tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.painel-dashboard tbody tr {
+    transition: 0.18s ease;
+}
+
+.painel-dashboard tbody tr:hover td {
+    background: #fbfaff;
+}
+
+/* NMR DO PEDIDO */
+
+.painel-dashboard tbody td:first-child {
+    color: #6247aa;
+
+    font-weight: 800;
+}
+
+
+/* CLIENTE */
+
+.painel-dashboard tbody td:nth-child(2) {
+    color: #393344;
+
+    font-weight: 600;
+}
+
+
+/* VALORES */
+
+.painel-dashboard tbody td:nth-child(4),
+.painel-dashboard tbody td:nth-child(6) {
+    color: #494352;
+
+    font-weight: 600;
+}
+
+
+/* STATUS */
+
+.painel-dashboard tbody td:nth-child(7) {
+    font-size: 11px;
+
+    font-weight: 750;
+
+    text-transform: uppercase;
+}
+
+
+/* PENDENTE */
+
+.painel-dashboard tbody tr:has(
+    td:nth-child(7)
+) td:nth-child(7) {
+    color: #6f6878;
+}
+
+
+/* FORM */
+
+.painel-dashboard td form {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* SELECT */
+
+.painel-dashboard td form select {
+    height: 34px;
+
+    padding: 0 28px 0 10px;
+
+    border: 1px solid #ded8e7;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #55505f;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.painel-dashboard td form select:hover {
+    border-color: #bdb0d0;
+}
+
+.painel-dashboard td form select:focus {
+    border-color: #8062c5;
+
+    box-shadow:
+        0 0 0 3px rgba(98, 71, 170, 0.08);
+}
+
+
+/* BOTAO DE ATUALIZAR */
+
+.painel-dashboard td form button {
+    height: 34px;
+
+    padding: 0 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #6247aa;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.painel-dashboard td form button:hover {
+    background: #513795;
+
+    transform: translateY(-1px);
+}
+
+/* PRA NENHUM PEDIDO */
+
+.painel-dashboard tbody tr td[colspan="8"] {
+    padding: 55px 20px;
+
+    color: #96909f;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+@media (max-width: 1200px) {
+
+    .painel-dashboard {
+        overflow-x: auto;
+    }
+
+    .painel-dashboard table {
+        min-width: 1050px;
+    }
+
+}
+
+
+/* RESPONSIVIDADE DOS PEDIDOS */
+
+@media (max-width: 800px) {
+
+    .filtros-produtos {
+        flex-wrap: wrap;
+    }
+
+    .filtros-produtos input {
+        width: 100%;
+    }
+
+    .filtros-produtos select {
+        flex: 1;
+
+        min-width: 180px;
+    }
+
+    .btn-filtrar,
+    .btn-limpar {
+        flex: 1;
+    }
+
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 500px) {
+
+    .titulo-dashboard h1 {
+        font-size: 25px;
+    }
+
+    .filtros-produtos {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .filtros-produtos input,
+    .filtros-produtos select,
+    .btn-filtrar,
+    .btn-limpar {
+        width: 100%;
+    }
+
+    .painel-titulo {
+        padding: 18px;
+    }
+
+}

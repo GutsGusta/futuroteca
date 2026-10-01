@@ -21,6 +21,7 @@ $clientes = readAll(
     <title>Clientes | Futuroteca</title>
 
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/clientes-adm.css">
 
 </head>
 
